@@ -11,7 +11,7 @@ import './App.css';
 
 import firebase from './firebase';
 
-import resultsPage from './pages/resultsPage';
+import ResultsPage from './pages/resultsPage/resultsPage';
 
 
 function App() {
@@ -36,8 +36,8 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route path="/resultsPage">
-          <resultsPage />
+        <Route path="/test">
+          <ResultsPage />
         </Route>
         <Route path="/users">
           <Users />
