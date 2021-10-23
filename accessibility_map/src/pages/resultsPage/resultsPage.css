@@ -1,0 +1,20 @@
+.resultsgrid {
+    padding: 10px;
+    height: 100vh;
+}
+
+.mapitem {
+    height: 100%;
+}
+
+.sidepane {
+    height: 100%;
+}
+
+.searchbox {
+    width: 100%;
+}
+
+.results {
+    height: 80vh;
+}
