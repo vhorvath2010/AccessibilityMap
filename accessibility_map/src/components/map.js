@@ -2,7 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 
-import { MapContainer, TileLayer, Marker, Popup, LayersControl, LayerGroup } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Tooltip, LayersControl, LayerGroup } from 'react-leaflet';
 import { useMapEvents } from 'react-leaflet';
 
 import './map.css';
@@ -38,12 +38,22 @@ function Map(props:{vendors:Object, updateCenterCallback:CallableFunction}) {
                 </LayersControl.BaseLayer>
                 <LayersControl.Overlay checked name="Restaurants">
                     <LayerGroup>
-                        {props.vendors != null ? props.vendors.restaurant.map((vendor) => (<Marker position={[vendor.latlng._lat, vendor.latlng._long]}></Marker>)) : null}
+                        {props.vendors != null ? props.vendors.restaurant.map((vendor) => (<Marker position={[vendor.latlng.lat, vendor.latlng.lng]}><Tooltip>{vendor.name}<br></br>{vendor.addr}</Tooltip></Marker>)) : null}
                     </LayerGroup>
                 </LayersControl.Overlay>
                 <LayersControl.Overlay checked name="Park">
                     <LayerGroup>
-                        {props.vendors != null ? props.vendors.park.map((vendor) => (<Marker position={[vendor.latlng._lat, vendor.latlng._long]}></Marker>)) : null}
+                        {props.vendors != null ? props.vendors.park.map((vendor) => (<Marker position={[vendor.latlng.lat, vendor.latlng.lng]}><Tooltip>{vendor.name}<br></br>{vendor.addr}</Tooltip></Marker>)) : null}
+                    </LayerGroup>
+                </LayersControl.Overlay>
+                <LayersControl.Overlay checked name="Transportation">
+                    <LayerGroup>
+                        {props.vendors != null ? props.vendors.transportation.map((vendor) => (<Marker position={[vendor.latlng.lat, vendor.latlng.lng]}><Tooltip>{vendor.name}<br></br>{vendor.addr}</Tooltip></Marker>)) : null}
+                    </LayerGroup>
+                </LayersControl.Overlay>
+                <LayersControl.Overlay checked name="Hairdresser">
+                    <LayerGroup>
+                        {props.vendors != null ? props.vendors.hairdresser.map((vendor) => (<Marker position={[vendor.latlng.lat, vendor.latlng.lng]}><Tooltip>{vendor.name}<br></br>{vendor.addr}</Tooltip></Marker>)) : null}
                     </LayerGroup>
                 </LayersControl.Overlay>
                 
