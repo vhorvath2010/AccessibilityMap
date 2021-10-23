@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -8,7 +8,7 @@ import {
 
 import logo from './logo.svg';
 import './App.css';
-import React, { useState, useEffect } from 'react';
+
 import firebase from './firebase';
 
 import resultsPage from './pages/resultsPage';
