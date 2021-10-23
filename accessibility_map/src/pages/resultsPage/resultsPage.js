@@ -10,8 +10,7 @@ import { TextField } from '@mui/material';
 import { Typography } from '@mui/material';
 import Button from '@mui/material/Button';
 
-import { Fab } from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
+import { FormGroup, FormControlLabel, Checkbox, Switch } from '@mui/material';
 
 
 import Map from '../../components/map';
@@ -59,6 +58,34 @@ function ResultsPage(props:{vendors:Object, handleAddVendorClickCallback:Callabl
                                     </div>
                                 </CardContent>
                             </Card>
+                        </Grid>
+                        <Grid item xs={12} align="center">
+                            <FormGroup aria-label="position" row >
+                                <FormControlLabel
+                                value="Color friendly"
+                                control={<Switch color="primary" />}
+                                label="Color friendly"
+                                labelPlacement="left"
+                                />
+                                <FormControlLabel
+                                value="Text-to-Speech"
+                                control={<Switch color="primary" />}
+                                label="Text-to-Speech"
+                                labelPlacement="left"
+                                />
+                                <FormControlLabel
+                                value="bottom"
+                                control={<Switch color="primary" />}
+                                label="Bottom"
+                                labelPlacement="left"
+                                />
+                                <FormControlLabel
+                                value="end"
+                                control={<Switch color="primary" />}
+                                label="End"
+                                labelPlacement="left"
+                                />
+                            </FormGroup>
                         </Grid>
                         <Grid item xs={12}>
                             <Button variant="contained" className="addvendorbutton" onClick={props.handleAddVendorClickCallback}>Add New Vendor</Button>
