@@ -13,6 +13,7 @@ import firebase from './firebase';
 
 import ResultsPage from './pages/resultsPage/resultsPage';
 import HomePage from './pages/home/home';
+import Vendor from './pages/Vendor/vendor'
 
 import { getVendors } from './services/getVendors';
 
