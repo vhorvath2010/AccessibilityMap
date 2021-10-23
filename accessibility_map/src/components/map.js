@@ -2,12 +2,12 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 
-import { MapContainer, TileLayer, Marker, Popup, LayersControl } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, LayersControl, LayerGroup } from 'react-leaflet';
 import { useMapEvents } from 'react-leaflet';
 
 import './map.css';
 
-function Map(props:{updateCenterCallback:CallableFunction}) {
+function Map(props:{vendors:Object, updateCenterCallback:CallableFunction}) {
 
     const [map, setMap] = useState();
     const [center, setCenter] = useState()
@@ -36,17 +36,15 @@ function Map(props:{updateCenterCallback:CallableFunction}) {
                     url="https://tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png"
                     />
                 </LayersControl.BaseLayer>
-                <LayersControl.Overlay name="Restaurants">
-                <Marker position={[51.505, -0.09]}></Marker>
-                    {/* Z{this.props.restaurants.map((vendor) => (<Marker position={[vendor.lat, vendor.lng]}></Marker>))} */}
+                <LayersControl.Overlay checked name="Restaurants">
+                    <LayerGroup>
+                        {props.vendors != null ? props.vendors.restaurant.map((vendor) => (<Marker position={[vendor.latlng._lat, vendor.latlng._long]}></Marker>)) : null}
+                    </LayerGroup>
                 </LayersControl.Overlay>
-                <LayersControl.Overlay name="Transporation">
-                <Marker position={[51.505, -0.09]}></Marker>
-                    {/* Z{this.props.restaurants.map((vendor) => (<Marker position={[vendor.lat, vendor.lng]}></Marker>))} */}
-                </LayersControl.Overlay>
-                <LayersControl.Overlay name="Services">
-                <Marker position={[51.505, -0.09]}></Marker>
-                    {/* Z{this.props.restaurants.map((vendor) => (<Marker position={[vendor.lat, vendor.lng]}></Marker>))} */}
+                <LayersControl.Overlay checked name="Park">
+                    <LayerGroup>
+                        {props.vendors != null ? props.vendors.park.map((vendor) => (<Marker position={[vendor.latlng._lat, vendor.latlng._long]}></Marker>)) : null}
+                    </LayerGroup>
                 </LayersControl.Overlay>
                 
             </LayersControl>

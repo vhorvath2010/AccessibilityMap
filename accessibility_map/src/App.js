@@ -50,7 +50,7 @@ function App() {
     <Router>
       <Switch>
         <Route path="/test">
-          <ResultsPage updateCenterCallback={updateCenterCallback} updateLocationCallback={updateLocationCallback}/>
+          <ResultsPage vendors={vendors} updateCenterCallback={updateCenterCallback} updateLocationCallback={updateLocationCallback}/>
         </Route>
         <Route path="/users">
           <Users />
