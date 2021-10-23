@@ -14,6 +14,7 @@ import firebase from './firebase';
 import ResultsPage from './pages/resultsPage/resultsPage';
 import HomePage from './pages/home/home';
 import Vendor from './pages/Vendor/vendor'
+import VendorPopup from './components/vendorPopup';
 
 import { getVendors } from './services/getVendors';
 
@@ -25,6 +26,8 @@ function App() {
   const [locationText, setLocationText] = useState();
 
   const ref = firebase.firestore().collection('vendors');
+
+  const [addVendorOpen, setAddVendorOpen] = useState(false);
 
   useEffect(() => {
     if (center != null) {
@@ -45,12 +48,21 @@ function App() {
     console.log("app received updated location");
     setLocationText(location);
   }
+  
+  function handleAddVendorClickCallback() {
+    setAddVendorOpen(true);
+  }
+
+  function handleAddVendorCloseCallback() {
+    setAddVendorOpen(false);
+  }
 
   return (
     <Router>
       <Switch>
         <Route path="/test">
-          <ResultsPage vendors={vendors} updateCenterCallback={updateCenterCallback} updateLocationCallback={updateLocationCallback}/>
+          <ResultsPage vendors={vendors} handleAddVendorClickCallback={handleAddVendorClickCallback} updateCenterCallback={updateCenterCallback} updateLocationCallback={updateLocationCallback}/>
+          <VendorPopup open={addVendorOpen} handleAddVendorCloseCallback={handleAddVendorCloseCallback}/>
         </Route>
         <Route path="/users">
           <Users />

@@ -8,6 +8,11 @@ import Grid from '@mui/material/Grid';
 import { Card, CardContent } from '@mui/material';
 import { TextField } from '@mui/material';
 import { Typography } from '@mui/material';
+import Button from '@mui/material/Button';
+
+import { Fab } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
+
 
 import Map from '../../components/map';
 
@@ -20,7 +25,7 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-function ResultsPage(props:{vendors:Object, updateCenterCallback:CallableFunction, updateLocationCallback:CallableFunction}) {
+function ResultsPage(props:{vendors:Object, handleAddVendorClickCallback:CallableFunction, updateCenterCallback:CallableFunction, updateLocationCallback:CallableFunction}) {
     
     function updateCenterCallback(center) {
         props.updateCenterCallback(center)
@@ -55,9 +60,16 @@ function ResultsPage(props:{vendors:Object, updateCenterCallback:CallableFunctio
                                 </CardContent>
                             </Card>
                         </Grid>
+                        <Grid item xs={12}>
+                            <Button variant="contained" className="addvendorbutton" onClick={props.handleAddVendorClickCallback}>Add New Vendor</Button>
+                            {/* <Fab color="primary" aria-label="add" className="addvendorbutton">
+                                <AddIcon />
+                            </Fab> */}
+                        </Grid>
                     </Grid>
                 </Grid>
             </Grid>
+            
         </Box>
 
     );
