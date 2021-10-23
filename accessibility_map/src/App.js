@@ -10,12 +10,18 @@ import logo from './logo.svg';
 import './App.css';
 
 import firebase from './firebase';
-import { getVendors } from './services/getVendors';
-import resultsPage from './pages/resultsPage';
+
+import ResultsPage from './pages/resultsPage/resultsPage';
 import HomePage from './pages/home/home';
+
+import { getVendors } from './services/getVendors';
+
+
 
 function App() {
   const [vendors, setVendors] = useState([]);
+  const [center, setCenter] = useState();
+  const [locationText, setLocationText] = useState();
 
   const ref = firebase.firestore().collection('vendors');
 
@@ -27,11 +33,21 @@ function App() {
     console.log(vendors['restaurant'][0]);
   }, []);
 
+  function updateCenterCallback(center) {
+    console.log("app page received center");
+    setCenter(center);
+  }
+
+  function updateLocationCallback(location) {
+    console.log("app received updated location");
+    setLocationText(location);
+  }
+
   return (
     <Router>
       <Switch>
-        <Route path="/resultsPage">
-          <resultsPage />
+        <Route path="/test">
+          <ResultsPage updateCenterCallback={updateCenterCallback} updateLocationCallback={updateLocationCallback}/>
         </Route>
         <Route path="/users">
           <Users />
