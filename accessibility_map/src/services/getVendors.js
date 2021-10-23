@@ -7,19 +7,23 @@ const db = firebase.firestore().collection('vendors');
     Function to return vendors within [radius] km from center
 */
 export function getVendors(center, radius) {
+    const names = ['restaurant', 'park', 'public transport', 'hair dresser'];
+    var dict = {'restaurant': [], 'park': [], 'public transport': [], 'hair dresser': []};
+    if (!center) {
+        return dict;
+    }
     db.get().then(vendorsSnapshot => {
         const vendors = vendorsSnapshot.docs.map(doc => doc.data());
-        const vendorsInRange = [];
         vendors.forEach(vendor => {
             const loc = vendor['latlng'];
             // Convert to geoloc
+            const centerLoc = { latitude: center['lat'], longitude: center['long']}
             const geoLoc = { latitude: loc['_lat'], longitude: loc['_long']};
             // Add vendor if it's within range
-            if (isPointWithinRadius(geoLoc, center, radius)) {
-                vendorsInRange.push(vendor);
+            if (isPointWithinRadius(geoLoc, centerLoc, radius)) {
+                dict[names[vendor['type']]].push(vendor);
             }
         });
-        console.log("Found " + vendorsInRange.length + " nearby vendors");
-        return vendorsInRange;
     });
+    return dict;
 };
