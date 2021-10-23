@@ -14,3 +14,7 @@
 .searchbox {
     width: 100%;
 }
+
+.results {
+    height: 80vh;
+}

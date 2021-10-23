@@ -43,7 +43,7 @@ function ResultsPage(props:{updateCenterCallback:CallableFunction, updateLocatio
                             <Item ><TextField className="searchbox" id="outlined-basic" label="Location" variant="outlined" onKeyDown={handleLocationChange}/></Item>
                         </Grid>
                         <Grid item xs={12}>
-                            <Item>Results Placeholder</Item>
+                            <Item><div className="results">Results Placeholder</div></Item>
                         </Grid>
                     </Grid>
                 </Grid>
