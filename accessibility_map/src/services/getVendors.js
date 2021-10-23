@@ -17,7 +17,7 @@ export function getVendors(center, radius) {
         vendors.forEach(vendor => {
             const loc = vendor['latlng'];
             // Convert to geoloc
-            const centerLoc = { latitude: center['lat'], longitude: center['long']}
+            const centerLoc = { latitude: center['lat'], longitude: center['lng']}
             const geoLoc = { latitude: loc['_lat'], longitude: loc['_long']};
             // Add vendor if it's within range
             if (isPointWithinRadius(geoLoc, centerLoc, radius)) {

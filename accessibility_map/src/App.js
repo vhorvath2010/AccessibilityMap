@@ -19,19 +19,20 @@ import { getVendors } from './services/getVendors';
 
 
 function App() {
-  const [vendors, setVendors] = useState([]);
+  const [vendors, setVendors] = useState();
   const [center, setCenter] = useState();
   const [locationText, setLocationText] = useState();
 
   const ref = firebase.firestore().collection('vendors');
 
   useEffect(() => {
-    // Placeholder values
-    const center = { lat: 1.0, long: 10};
-    const radius = 100000000;
-    setVendors(getVendors(center, radius));
-    console.log(vendors['restaurant'][0]);
-  }, []);
+    if (center != null) {
+      // Placeholder values
+      const radius = 100000000;
+      setVendors(getVendors(center, radius));
+      console.log(getVendors(center, radius));
+    }
+  }, [center]);
 
   function updateCenterCallback(center) {
     console.log("app page received center");
