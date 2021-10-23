@@ -10,12 +10,14 @@ import logo from './logo.svg';
 import './App.css';
 
 import firebase from './firebase';
+
+import ResultsPage from './pages/resultsPage/resultsPage';
 import { getVendors } from './services/getVendors';
-import resultsPage from './pages/resultsPage';
 
 
 function App() {
   const [vendors, setVendors] = useState([]);
+  const [center, setCenter] = useState()
 
   const ref = firebase.firestore().collection('vendors');
 
@@ -36,11 +38,16 @@ function App() {
     getVendors(center, radius);
   }, []);
 
+  function updateCenterCallback(center) {
+    console.log("app page received center");
+    setCenter(center);
+  }
+
   return (
     <Router>
       <Switch>
-        <Route path="/resultsPage">
-          <resultsPage />
+        <Route path="/test">
+          <ResultsPage updateCenterCallback={updateCenterCallback}/>
         </Route>
         <Route path="/users">
           <Users />
