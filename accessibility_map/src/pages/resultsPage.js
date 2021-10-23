@@ -2,13 +2,13 @@ import * as React from 'react';
 import ReactDOM from 'react-dom';
 import Button from '@mui/material/Button';
 
-class resultsPage extends React.Component {
-  render(){
+const ResultsPage = () => {
+  
     return (
-        <h2>Home</h2>
+        <h2>Hiii</h2>
         // <Button variant="contained">Hello World</Button>
     );
-  }
-}
+  
+};
 
-export default resultsPage;
+export default ResultsPage;

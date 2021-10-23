@@ -1,0 +1,9 @@
+.container
+body {
+  background-color: white;
+  color: black;
+  padding: 80px;
+  margin-top: 40px;
+  font-family: Arial;
+  text-align: center;
+}

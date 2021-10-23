@@ -11,8 +11,8 @@ import './App.css';
 
 import firebase from './firebase';
 
-import resultsPage from './pages/resultsPage';
-
+import ResultsPage from './pages/ResultsPage';
+import Vendor from './pages/Vendor/vendor';
 
 function App() {
   const [vendors, setVendors] = useState([]);
@@ -37,10 +37,13 @@ function App() {
     <Router>
       <Switch>
         <Route path="/resultsPage">
-          <resultsPage />
+          <ResultsPage></ResultsPage>
         </Route>
         <Route path="/users">
           <Users />
+        </Route>
+        <Route path="/vendor">
+          <Vendor />
         </Route>
         <Route path="/">
           <Home />
