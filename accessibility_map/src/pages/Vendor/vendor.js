@@ -5,6 +5,7 @@ import { TextField, FormControl, InputLabel, Select, MenuItem, Checkbox, Button,
     FormControlLabel, FormGroup, Grid } from '@mui/material';
 import { alpha } from '@mui/material/styles';
 import { servicesVersion } from 'typescript';
+import { handleNewVendor } from '../../services/handleNewVendor';
 
 
 const Vendor = () => {
@@ -21,6 +22,9 @@ const Vendor = () => {
                     'Mobility Access',
                 ];
     const [checked, setChecked] = useState([]);
+    var serviceRes = {};
+    services.forEach((key, i) => serviceRes[key] = checked[i]);
+    console.log(serviceRes)
 
     const updateName = (event) => {
         setName(event.target.value);
@@ -38,7 +42,7 @@ const Vendor = () => {
         setChecked(prevState => prevState.map((item, idx) => idx === index ? !item : item));
     }
     const handleSubmit = () => {
-        alert(`Name: ${name} Address: ${addr} Type: ${busType} Services: ${checked}`);
+        handleNewVendor(name, addr, busType, serviceRes);
     } 
    
     return (
