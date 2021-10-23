@@ -5,6 +5,7 @@ import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
+import { TextField } from '@mui/material';
 
 import Map from '../../components/map';
 
@@ -17,10 +18,16 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-function ResultsPage(props:{updateCenterCallback:CallableFunction}) {
+function ResultsPage(props:{updateCenterCallback:CallableFunction, updateLocationCallback:CallableFunction}) {
     
     function updateCenterCallback(center) {
         props.updateCenterCallback(center)
+    }
+
+    function handleLocationChange(e) {
+        if (e.keyCode == 13) {
+            props.updateLocationCallback(e.target.value);
+        }
     }
 
     return (
@@ -33,7 +40,7 @@ function ResultsPage(props:{updateCenterCallback:CallableFunction}) {
                 <Grid item xs={4} className="sidepane">
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
-                            <Item >Search Bar Placeholder</Item>
+                            <Item ><TextField className="searchbox" id="outlined-basic" label="Location" variant="outlined" onKeyDown={handleLocationChange}/></Item>
                         </Grid>
                         <Grid item xs={12}>
                             <Item>Results Placeholder</Item>
