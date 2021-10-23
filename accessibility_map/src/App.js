@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import React, { useState, useEffect } from 'react';
 import firebase from './firebase';
+import { handleNewVendor } from './services/handleNewVendor';
 
 function App() {
   const [vendors, setVendors] = useState([]);
@@ -18,9 +19,25 @@ function App() {
       setVendors(items);
     })
   }
+  // useEffect(() => {
+  //   getVendors();
+  // }, []);
+
+  const inputs = {
+    addr: "24 Sussex Drive, Ottawa, ON",
+    animal: false,
+    asl: false,
+    braille: false,
+    curb: false,
+    mob: false,
+    name: "John",
+    park: false,
+    type: "restaurants"
+  };
+  
   useEffect(() => {
-    getVendors();
-  }, []);
+    handleNewVendor(inputs);}
+  , []);
 
   return (
     <div className="App">
