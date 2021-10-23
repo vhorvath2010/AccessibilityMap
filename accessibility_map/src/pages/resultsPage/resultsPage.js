@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -16,29 +17,18 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-const ResultsPage = () => {
+function ResultsPage(props:{updateCenterCallback:CallableFunction}) {
+    
+    function updateCenterCallback(center) {
+        props.updateCenterCallback(center)
+    }
 
     return (
-        // <Grid container spacing={2}>
-        //     <Grid item xs={8}>
-        //         <Item>xs=8</Item>
-        //     </Grid>
-        //     <Grid item xs={4}>
-        //         <Item>xs=4</Item>
-        //     </Grid>
-        //     <Grid item xs={4}>
-        //         <Item>xs=4</Item>
-        //     </Grid>
-        //     <Grid item xs={8}>
-        //         <Item>xs=8</Item>
-        //     </Grid>
-        //     </Grid>
-        //<Map />
 
         <Box>
             <Grid container spacing={2} className="resultsgrid">
                 <Grid item xs={8}>
-                    <Item className="mapitem"><Map /></Item>
+                    <Item className="mapitem"><Map updateCenterCallback={updateCenterCallback}/></Item>
                 </Grid>
                 <Grid item xs={4} className="sidepane">
                     <Grid container spacing={2}>
