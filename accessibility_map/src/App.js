@@ -29,8 +29,10 @@ function App() {
     if (center != null) {
       // Placeholder values
       const radius = 100000000;
-      setVendors(getVendors(center, radius));
-      console.log(getVendors(center, radius));
+      getVendors(center, radius).then(vendors => {
+        setVendors(vendors);
+        console.log(vendors); 
+      });
     }
   }, [center]);
 
