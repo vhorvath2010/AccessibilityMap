@@ -22,7 +22,7 @@ function Map(props:{updateCenterCallback:CallableFunction}) {
     }
 
     return (
-        <MapContainer center={[51.505, -0.09]} style={{width: '100%',height: '100%'}}zoom={13} scrollWheelZoom={false} whenCreated={map => setMap(map)}>
+        <MapContainer center={[45.444, -75.6939]} style={{width: '100%',height: '100%'}}zoom={13} scrollWheelZoom={false} whenCreated={map => setMap(map)}>
             <LayersControl position="topright">
                 <LayersControl.BaseLayer checked name="OpenStreetMap.Mapnik">
                     <TileLayer
