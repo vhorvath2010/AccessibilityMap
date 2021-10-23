@@ -17,7 +17,8 @@ import { getVendors } from './services/getVendors';
 
 function App() {
   const [vendors, setVendors] = useState([]);
-  const [center, setCenter] = useState()
+  const [center, setCenter] = useState();
+  const [locationText, setLocationText] = useState();
 
   const ref = firebase.firestore().collection('vendors');
 
@@ -43,11 +44,16 @@ function App() {
     setCenter(center);
   }
 
+  function updateLocationCallback(location) {
+    console.log("app received updated location");
+    setLocationText(location);
+  }
+
   return (
     <Router>
       <Switch>
         <Route path="/test">
-          <ResultsPage updateCenterCallback={updateCenterCallback}/>
+          <ResultsPage updateCenterCallback={updateCenterCallback} updateLocationCallback={updateLocationCallback}/>
         </Route>
         <Route path="/users">
           <Users />
