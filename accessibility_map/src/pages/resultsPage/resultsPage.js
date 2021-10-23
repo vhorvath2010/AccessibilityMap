@@ -20,7 +20,7 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-function ResultsPage(props:{updateCenterCallback:CallableFunction, updateLocationCallback:CallableFunction}) {
+function ResultsPage(props:{vendors:Object, updateCenterCallback:CallableFunction, updateLocationCallback:CallableFunction}) {
     
     function updateCenterCallback(center) {
         props.updateCenterCallback(center)
@@ -37,7 +37,7 @@ function ResultsPage(props:{updateCenterCallback:CallableFunction, updateLocatio
         <Box>
             <Grid container spacing={2} className="resultsgrid">
                 <Grid item xs={8}>
-                    <Item className="mapitem"><Map updateCenterCallback={updateCenterCallback}/></Item>
+                    <Item className="mapitem"><Map vendors={props.vendors} updateCenterCallback={updateCenterCallback}/></Item>
                 </Grid>
                 <Grid item xs={4} className="sidepane">
                     <Grid container spacing={2}>

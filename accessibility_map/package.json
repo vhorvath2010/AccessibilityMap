@@ -12,6 +12,7 @@
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.23.0",
     "firebase": "^9.1.3",
+    "framer-motion": "^4.1.17",
     "geolib": "^3.3.3",
     "leaflet": "^1.7.1",
     "react": "^17.0.2",
