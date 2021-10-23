@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import './home.css';
 
+import { TextField } from '@mui/material';
+
 function HomePage() {
     const [stage, setStage] = useState(0);
     const [loc, setLoc] = useState();
@@ -16,7 +18,7 @@ function HomePage() {
         return (
             <div class="titleSlide">
                 <h1>Where are you?</h1>
-                <input type="text" placeholder="Enter your location"></input>
+                <TextField className="searchbox" id="outlined-basic" label="Location" variant="filled"/>
                 <button type="submit" onClick={() => {
                     setStage(stage + 1);
                 }}>Submit</button>
