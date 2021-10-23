@@ -12,7 +12,10 @@ import './App.css';
 import firebase from './firebase';
 
 import ResultsPage from './pages/resultsPage/resultsPage';
+import HomePage from './pages/home/home';
+
 import { getVendors } from './services/getVendors';
+
 
 
 function App() {
@@ -22,21 +25,12 @@ function App() {
 
   const ref = firebase.firestore().collection('vendors');
 
-  /* function getVendors() {
-    ref.onSnapshot((querySnapshot) => {
-      const items = [];
-      querySnapshot.forEach(element => {
-        items.push(element.data());
-      });
-      setVendors(items);
-    })
-  } */
-
   useEffect(() => {
     // Placeholder values
-    const center = { latitude: 1.0, longitude: 10};
+    const center = { lat: 1.0, long: 10};
     const radius = 100000000;
-    getVendors(center, radius);
+    setVendors(getVendors(center, radius));
+    console.log(vendors['restaurant'][0]);
   }, []);
 
   function updateCenterCallback(center) {
@@ -59,15 +53,11 @@ function App() {
           <Users />
         </Route>
         <Route path="/">
-          <Home />
+          <HomePage />
         </Route>
       </Switch>
     </Router>
   );
-}
-
-function Home() {
-  return <h2>Home</h2>;
 }
 
 function About() {

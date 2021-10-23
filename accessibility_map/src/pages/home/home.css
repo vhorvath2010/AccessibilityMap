@@ -1,0 +1,48 @@
+.titleSlide {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-image: url('../../assets/wheelchair_beach.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color: white;
+}
+
+.titleSlide h1 {
+    font-size: 42px;
+}
+
+.titleSlide button {
+    font-size: 26px;
+    background-color: darkgray;
+    border-color: white;
+    color: white;
+    border-radius: 25px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.buttonGroup div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.buttonGroup button {
+    margin: 50px;
+    margin-top: 0px;
+}
+
+.titleSlide input {
+    color: gray;
+    font-size: 22px;
+    margin-bottom: 15px;
+}
