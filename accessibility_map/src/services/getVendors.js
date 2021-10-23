@@ -24,6 +24,7 @@ export function getVendors(center, radius) {
                 dict[names[vendor['type']]].push(vendor);
             }
         });
+        
     });
     return dict;
 };

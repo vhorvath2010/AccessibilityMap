@@ -26,14 +26,13 @@ function App() {
   const ref = firebase.firestore().collection('vendors');
 
   useEffect(() => {
-    if (vendors != null) {
+    if (center != null) {
       // Placeholder values
-      const center = { lat: 1.0, long: 10};
       const radius = 100000000;
       setVendors(getVendors(center, radius));
-      console.log(vendors['restaurant'][0]);
+      console.log(getVendors(center, radius));
     }
-  }, []);
+  }, [center]);
 
   function updateCenterCallback(center) {
     console.log("app page received center");
