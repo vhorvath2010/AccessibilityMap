@@ -10,17 +10,21 @@ import logo from './logo.svg';
 import './App.css';
 
 import firebase from './firebase';
+<<<<<<< HEAD
 
 import ResultsPage from './pages/resultsPage/resultsPage';
+=======
+import { getVendors } from './services/getVendors';
+import resultsPage from './pages/resultsPage';
+>>>>>>> f69290fafe343ababd65022f598cbf570ea2a32c
 
 
 function App() {
   const [vendors, setVendors] = useState([]);
 
   const ref = firebase.firestore().collection('vendors');
-  console.log(ref);
 
-  function getVendors() {
+  /* function getVendors() {
     ref.onSnapshot((querySnapshot) => {
       const items = [];
       querySnapshot.forEach(element => {
@@ -28,9 +32,13 @@ function App() {
       });
       setVendors(items);
     })
-  }
+  } */
+
   useEffect(() => {
-    getVendors();
+    // Placeholder values
+    const center = { latitude: 1.0, longitude: 10};
+    const radius = 100000000;
+    getVendors(center, radius);
   }, []);
 
   return (

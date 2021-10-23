@@ -38,6 +38,13 @@ class Map extends React.Component {
                     <LayersControl.Overlay name="Restaurants">
                         {/* Z{this.props.restaurants.map((vendor) => (<Marker position={[vendor.lat, vendor.lng]}></Marker>))} */}
                     </LayersControl.Overlay>
+                    <LayersControl.Overlay name="Transporation">
+                        {/* Z{this.props.restaurants.map((vendor) => (<Marker position={[vendor.lat, vendor.lng]}></Marker>))} */}
+                    </LayersControl.Overlay>
+                    <LayersControl.Overlay name="Services">
+                        {/* Z{this.props.restaurants.map((vendor) => (<Marker position={[vendor.lat, vendor.lng]}></Marker>))} */}
+                    </LayersControl.Overlay>
+                    
                 </LayersControl>
             </MapContainer>
         );
