@@ -31,7 +31,6 @@ function App() {
       const radius = 100000000;
       getVendors(center, radius).then(vendors => {
         setVendors(vendors);
-        console.log(vendors); 
       });
     }
   }, [center]);
