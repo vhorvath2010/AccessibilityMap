@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 
 import firebase from 'firebase/app';
-import 'firebase/firestore';
+import { collection, doc, setDoc, getDoc } from 'firebase/firestore';
 
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 
@@ -26,6 +26,13 @@ function App() {
       </header>
     </div>
   );
+}
+
+let id = ""
+const docRef = doc(db, "vendors", id);
+const docSnap = await getDoc(docRef);
+function getStore() {
+  
 }
 
 export default App;
