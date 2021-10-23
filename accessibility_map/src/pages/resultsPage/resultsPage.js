@@ -5,7 +5,9 @@ import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
+import { Card, CardContent } from '@mui/material';
 import { TextField } from '@mui/material';
+import { Typography } from '@mui/material';
 
 import Map from '../../components/map';
 
@@ -43,7 +45,15 @@ function ResultsPage(props:{updateCenterCallback:CallableFunction, updateLocatio
                             <Item ><TextField className="searchbox" id="outlined-basic" label="Location" variant="outlined" onKeyDown={handleLocationChange}/></Item>
                         </Grid>
                         <Grid item xs={12}>
-                            <Item><div className="results">Results Placeholder</div></Item>
+                            <Card variant="outlined" className="results">
+                                <CardContent>
+                                    <div>
+                                        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                                        Word of the Day
+                                        </Typography>
+                                    </div>
+                                </CardContent>
+                            </Card>
                         </Grid>
                     </Grid>
                 </Grid>
