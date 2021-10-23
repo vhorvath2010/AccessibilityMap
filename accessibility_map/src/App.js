@@ -10,13 +10,9 @@ import logo from './logo.svg';
 import './App.css';
 
 import firebase from './firebase';
-<<<<<<< HEAD
 
 import ResultsPage from './pages/resultsPage/resultsPage';
-=======
 import { getVendors } from './services/getVendors';
-import resultsPage from './pages/resultsPage';
->>>>>>> f69290fafe343ababd65022f598cbf570ea2a32c
 
 
 function App() {
