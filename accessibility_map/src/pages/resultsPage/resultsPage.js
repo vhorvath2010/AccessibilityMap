@@ -27,7 +27,7 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 function ResultsPage(props:{vendors:Object, center:Object, handleAddVendorClickCallback:CallableFunction, updateCenterCallback:CallableFunction, updateLocationCallback:CallableFunction, vendorClickCallback:CallableFunction}) {
-    
+    console.log("vendors: " + JSON.stringify(props.vendors));
     function updateCenterCallback(center) {
         props.updateCenterCallback(center)
     }
