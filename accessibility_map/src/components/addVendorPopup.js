@@ -11,6 +11,8 @@ import { Select } from '@mui/material';
 import { MenuItem } from '@mui/material';
 import { FormControlLabel, Checkbox } from '@mui/material';
 import { handleNewVendor } from '../services/handleNewVendor';
+import { Input } from '@mui/material';
+import { Stack } from '@mui/material';
 
 function AddVendorPopup(props:{open:Boolean, handleAddVendorCloseCallback:CallableFunction}) {
   const [name, setName] = useState('');
@@ -132,6 +134,14 @@ function AddVendorPopup(props:{open:Boolean, handleAddVendorCloseCallback:Callab
           </Select>
           {services.map((service, index) => (<FormControlLabel control={<Checkbox onClick={setService} value={index} checked={checked[index]}/>} 
           key={index} label={service} />))}
+          <Stack direction="row" alignItems="center" spacing={2}>
+            <label htmlFor="contained-button-file">
+              <Input accept="image/*" id="contained-button-file" multiple type="file" />
+              <Button variant="contained" component="span">
+                Upload
+              </Button>
+            </label>
+          </Stack>
         </DialogContent>
         <DialogActions>
           <Button onClick={props.handleAddVendorCloseCallback}>Cancel</Button>

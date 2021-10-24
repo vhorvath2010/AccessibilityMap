@@ -9,6 +9,7 @@ import { Card, CardContent } from '@mui/material';
 import { TextField } from '@mui/material';
 import { Typography } from '@mui/material';
 import Button from '@mui/material/Button';
+import { Stack } from '@mui/material';
 
 import { FormGroup, FormControlLabel, Checkbox, Switch } from '@mui/material';
 
@@ -44,7 +45,29 @@ function ResultsPage(props:{vendors:Object, center:Object, handleAddVendorClickC
         <Box>
             <Grid container spacing={2} className="resultsgrid">
                 <Grid item xs={8}>
-                    <Item className="mapitem"><Map vendors={props.vendors} center={props.center} updateCenterCallback={updateCenterCallback} vendorClickCallback={props.vendorClickCallback}/></Item>
+                    <Item className="mapitem">
+                        <Map vendors={props.vendors} center={props.center} updateCenterCallback={updateCenterCallback} vendorClickCallback={props.vendorClickCallback}/>
+                    </Item>
+                    <Item className="legendrow">
+                        <Grid container spacing={2}>
+                            <Grid item xs={2}>
+                                <item><Typography color="black" sx={{ fontWeight: 'bold' }}>Legend:</Typography></item>
+                            </Grid>
+                            <Grid item xs={2}>
+                                <item><Typography color="black">Restaurants</Typography></item>
+                            </Grid>
+                            <Grid item xs={2}>
+                                <item><Typography color="black">Park</Typography></item>
+                            </Grid>
+                            <Grid item xs={2}>
+                                <item><Typography color="black">Transportation</Typography></item>
+                            </Grid>
+                            <Grid item xs={2}>
+                                <item><Typography color="black">Shopping</Typography></item>
+                            </Grid>
+
+                        </Grid>
+                    </Item>
                 </Grid>
                 <Grid item xs={4} className="sidepane">
                     <Grid container spacing={2}>
