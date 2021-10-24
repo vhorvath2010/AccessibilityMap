@@ -50,12 +50,16 @@ function HomePage(props:{updateCenterCallback:CallableFunction}) {
         return (
             <div class="titleSlide">
                 <h1>Where are you?</h1>
-                <TextField className="searchbox" 
+                <TextField 
+                    hiddenLabel
+                    className="searchbox" 
                     id="outlined-basic" 
-                    label="Location" 
-                    variant="filled"
+                    // label="Location" 
+                    variant="standard"
+                    inputProps={{
+                        style: { textAlign: 'center', fontSize: '40px', fontWeight: 'bold', 
+                        backgroundColor: 'white', width: 'fit-content'}}}
                     onChange={updateLocation} 
-                    defaultValue="Atlanta"
                     value={location}
                     />
                 <Button onClick={handleSubmit}>Submit</Button>

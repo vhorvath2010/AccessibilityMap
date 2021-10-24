@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
+import L from 'leaflet';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
@@ -27,6 +28,7 @@ const Item = styled(Paper)(({ theme }) => ({
   textAlign: 'center',
   color: theme.palette.text.secondary,
 }));
+
 
 function ResultsPage(props:{vendors:Object, center:Object, handleAddVendorClickCallback:CallableFunction, updateCenterCallback:CallableFunction, updateLocationCallback:CallableFunction, vendorClickCallback:CallableFunction}) {
     const location = useLocation();
@@ -61,19 +63,26 @@ function ResultsPage(props:{vendors:Object, center:Object, handleAddVendorClickC
                             <Grid item xs={2}>
                                 <item><Typography color="black" sx={{ fontWeight: 'bold' }}>Legend:</Typography></item>
                             </Grid>
-                            <Grid item xs={2}>
+                            <Grid item xs={2} flexDirection={'row'}>
+                                <img src={'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Ski_trail_rating_symbol-black_diamond.svg/768px-Ski_trail_rating_symbol-black_diamond.svg.png'}
+                                width={20} height={20}/>
                                 <item><Typography color="black">Restaurants</Typography></item>
                             </Grid>
                             <Grid item xs={2}>
+                                <img src={'https://media.discordapp.net/attachments/901274484340818010/901648550017007676/same-coloured-paper-l-deep-sky-blue-13.png'}
+                                width={20} height={20}/>
                                 <item><Typography color="black">Park</Typography></item>
                             </Grid>
                             <Grid item xs={2}>
+                                <img src={'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Ski_trail_rating_symbol-black_diamond.svg/768px-Ski_trail_rating_symbol-black_diamond.svg.png'}
+                                width={20} height={20}/>
                                 <item><Typography color="black">Transportation</Typography></item>
                             </Grid>
                             <Grid item xs={2}>
+                                <img src={'https://media.discordapp.net/attachments/901274484340818010/901648973784301608/57-576538_pink-star-clip-art-at-clker-pink-star.png'}
+                                width={20} height={20}/>
                                 <item><Typography color="black">Shopping</Typography></item>
                             </Grid>
-
                         </Grid>
                     </Item>
                 </Grid>
@@ -104,7 +113,7 @@ function ResultsPage(props:{vendors:Object, center:Object, handleAddVendorClickC
                                 labelPlacement="left"
                                 />
                                 <FormControlLabel
-                                value="bottom"
+                                value="Larger text"
                                 control={<Switch color="primary" />}
                                 label="Bottom"
                                 labelPlacement="left"
