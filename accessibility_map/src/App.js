@@ -90,7 +90,7 @@ function App() {
           <Users />
         </Route>
         <Route path="/">
-          <HomePage />
+          <HomePage updateCenterCallback={updateCenterCallback}/>
         </Route>
       </Switch>
     </Router>

@@ -9,6 +9,7 @@ import { Card, CardContent } from '@mui/material';
 import { TextField } from '@mui/material';
 import { Typography } from '@mui/material';
 import Button from '@mui/material/Button';
+import { useLocation } from 'react-router';
 
 import { FormGroup, FormControlLabel, Checkbox, Switch } from '@mui/material';
 
@@ -27,9 +28,15 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 function ResultsPage(props:{vendors:Object, center:Object, handleAddVendorClickCallback:CallableFunction, updateCenterCallback:CallableFunction, updateLocationCallback:CallableFunction, vendorClickCallback:CallableFunction}) {
+    const location = useLocation();
+    console.log(location);
+    // if (location !== null) {
+    //     // console.log(location);
+    //     props.updateLocationCallback(location.state.data);
+    // }
     console.log("vendors: " + JSON.stringify(props.vendors));
     function updateCenterCallback(center) {
-        props.updateCenterCallback(center)
+        props.updateCenterCallback(center);
     }
 
     function handleLocationChange(e) {
