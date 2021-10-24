@@ -64,7 +64,7 @@ function Map(props: { vendors: Object, center:Object, updateCenterCallback: Call
     
           mapControl.addBaseLayer(topographicLayer, "Topographic");
           mapControl.addBaseLayer(grayLayer, "Light Gray");
-          mapControl.addBaseLayer(imageryLayer, "Imagery");
+          mapControl.addBaseLayer(imageryLayer, "Satellite");
     
           map.addLayer(topographicLayer);  //  default
         }
@@ -134,20 +134,15 @@ function Map(props: { vendors: Object, center:Object, updateCenterCallback: Call
     }
 
     return (
-        <MapContainer center={[33.7490, -84.3880]} style={{ width: '100%', height: '100%' }} zoom={13} scrollWheelZoom={false} whenCreated={map => setMap(map)}>
-            <LayersControl position="topright" ref={(ref) => { setMapControl(ref); }}>
-                <LayersControl.BaseLayer checked name="OpenStreetMap.Mapnik">
+        <MapContainer center={[33.7490, -84.3880]} style={{ width: '100%', height: '100%' }} zoom={14} scrollWheelZoom={false} whenCreated={map => setMap(map)}>
+            <LayersControl collapsed={false} position="topright" ref={(ref) => { setMapControl(ref); }}>
+                <LayersControl.BaseLayer checked name="Color Base Map">
                     <TileLayer
                         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     />
                 </LayersControl.BaseLayer>
-                <LayersControl.BaseLayer name="OpenStreetMap.BlackAndWhite">
-                    <TileLayer
-                        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                        url="https://tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png"
-                    />
-                </LayersControl.BaseLayer>
+                {props.center != null ? <Marker position={props.center}></Marker> : null}
                 <LayersControl.Overlay checked name="Restaurants">
                     <LayerGroup>
                         {props.vendors != null ? props.vendors.restaurant.map((vendor) => (<Marker id={vendor.id} icon={redTriangleIcon} position={[vendor.latlng.lat, vendor.latlng.lng]} eventHandlers={{mouseup: handleVendorClick}}><Tooltip>{vendor.name}<br></br>{vendor.addr}<br></br><Rating name="read-only" value={getAccessibilityScore(vendor)} readOnly /><div class="ratingDesc">{getAccessibilityDesc(getAccessibilityScore(vendor))}</div></Tooltip></Marker>)) : null}

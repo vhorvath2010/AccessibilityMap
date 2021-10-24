@@ -13,8 +13,8 @@ function SearchResults(props) {
         var cards = vendors.map((vendor) => (
             <Card variant="outlined" >
                 <CardContent>
-                    <Typography variant="h4">{vendor.name}</Typography>
-                    <Typography variant="body" sx={{ color: "gray"}}>{vendor.addr}</Typography>
+                    <Typography variant="h5">{vendor.name}</Typography>
+                    <Typography variant="body" sx={{ color: "DimGray"}}>{vendor.addr}</Typography>
                     <Stack direction = "row" spacing={5} sx={{ pt: 3}}>
                         {listAccessibility(vendor, "mob", "Mobility")}
                         {listAccessibility(vendor, "park", "Parking")}
@@ -48,7 +48,7 @@ function listAccessibility(vendor, key, string) {
     } else {
         return (
             <Stack direction="row" spacing={0.5}>
-                <span class="material-icons" sx={{color: "grey"}}>close</span>
+                <span class="material-icons" sx={{color: "black"}}>close</span>
                 <Typography sx={{ mb: 20, fontSize: 16}}>{string}</Typography>
             </Stack>
         );
