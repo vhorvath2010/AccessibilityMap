@@ -12,6 +12,7 @@ import { MenuItem } from '@mui/material';
 import { FormControlLabel, Checkbox } from '@mui/material';
 import { Grid } from '@mui/material';
 import { Typography } from '@mui/material';
+import GalleryPopup from './galleryPopup';
 
 import './vendorPopup.css'
 
@@ -55,6 +56,7 @@ function VendorPopup(props: { id: String, vendor: Object, handleVendorCloseCallb
                   {listAccessibility(props.vendor, "braille", "Braille")}
                 </Stack>
               </div>
+              <Grid item xs={4}>
             </Grid>
           </Grid>
         </DialogContent>
