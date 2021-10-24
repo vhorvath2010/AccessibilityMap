@@ -34,25 +34,28 @@ function VendorPopup(props: { id: String, vendor: Object, handleVendorCloseCallb
   return (
     <div className="popupwindow">
       <Dialog open={props.id && props.vendor} onClose={props.handleAddVendorCloseCallback}>
-        {props.vendor != null ? <DialogTitle>{props.vendor.name}</DialogTitle> : null}
+        {props.vendor != null ? <DialogTitle><Typography color="black" sx={{ fontWeight: 'bold', fontSize: 25 }}>{props.vendor.name}</Typography></DialogTitle> : null}
         <DialogContent>
           <Grid container spacing={2} >
-            <Grid item xs={hasGallery ? 8 : 12}>
-              {props.vendor != null ? <div>A {names[props.vendor.type]} at<br />{props.vendor.addr}</div> : null}
+            <Grid item xs={hasGallery == true ? 8 : 12}>
+              {props.vendor != null ? <div>A <b>{names[props.vendor.type]}</b> at<br /> <i>{props.vendor.addr}</i></div> : null}
             </Grid>
-            <div class="accomidations">
-              <Stack direction="row" spacing={5} sx={{ pt: 3 }}>
-                {listAccessibility(props.vendor, "mob", "Mobility")}
-                {listAccessibility(props.vendor, "park", "Parking")}
-                {listAccessibility(props.vendor, "animal", "Animal")}
-              </Stack>
-              <Stack direction="row" spacing={5} sx={{ pt: 3 }}>
-                {listAccessibility(props.vendor, "asl", "ASL Training")}
-                {listAccessibility(props.vendor, "curb", "Curbside Pickup")}
-                {listAccessibility(props.vendor, "braille", "Braille")}
-              </Stack>
-            </div>
+            
             {hasGallery ? <Grid item xs={4}>this is where the grid would go</Grid> : null}
+            <Grid item xs={12}>
+              <div class="accomodations">
+                <Stack direction="row" spacing={5} sx={{ pt: 3 }}>
+                  {listAccessibility(props.vendor, "mob", "Mobility")}
+                  {listAccessibility(props.vendor, "park", "Parking")}
+                  {listAccessibility(props.vendor, "animal", "Animal")}
+                </Stack>
+                <Stack direction="row" spacing={5} sx={{ pt: 3 }}>
+                  {listAccessibility(props.vendor, "asl", "ASL Training")}
+                  {listAccessibility(props.vendor, "curb", "Curbside Pickup")}
+                  {listAccessibility(props.vendor, "braille", "Braille")}
+                </Stack>
+              </div>
+            </Grid>
           </Grid>
         </DialogContent>
         <DialogActions>
