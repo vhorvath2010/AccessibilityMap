@@ -15,6 +15,7 @@ import ResultsPage from './pages/resultsPage/resultsPage';
 import HomePage from './pages/home/home';
 import Vendor from './pages/Vendor/vendor'
 import VendorPopup from './components/vendorPopup';
+import GalleyPopup from './components/galleryPopup';
 
 import { getVendors } from './services/getVendors';
 import { getVendorFromID } from './services/getVendorFromID';
@@ -64,6 +65,9 @@ function App() {
         <Route path="/test">
           <ResultsPage vendors={vendors} handleAddVendorClickCallback={handleAddVendorClickCallback} updateCenterCallback={updateCenterCallback} updateLocationCallback={updateLocationCallback}/>
           <VendorPopup open={addVendorOpen} handleAddVendorCloseCallback={handleAddVendorCloseCallback}/>
+        </Route>
+        <Route path="/gallery">
+          <GalleyPopup id="w41RobVqDSDSelIqI7FG" />
         </Route>
         <Route path="/users">
           <Users />
