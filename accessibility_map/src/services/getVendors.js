@@ -26,7 +26,7 @@ export function getVendors(center, radius) {
             const centerLoc = { latitude: center['lat'], longitude: center['lng'] }
             const geoLoc = { latitude: loc['_lat'], longitude: loc['_long'] };
             vendor['latlng'] = {lat : loc['_lat'], lng: loc['_long']}
-            vendor['id'] = vendorIds[i];
+            vendor['id'] = vendorIds[i++];
             // Add vendor if it's within range
             if (isPointWithinRadius(geoLoc, centerLoc, radius)) {
                 dict[names[vendor['type']]].push(vendor);
