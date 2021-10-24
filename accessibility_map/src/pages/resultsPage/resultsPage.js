@@ -27,7 +27,7 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 function ResultsPage(props:{vendors:Object, center:Object, handleAddVendorClickCallback:CallableFunction, updateCenterCallback:CallableFunction, updateLocationCallback:CallableFunction, vendorClickCallback:CallableFunction}) {
-    console.log("vendors: " + JSON.stringify(props.vendors));
+    //console.log("vendors: " + JSON.stringify(props.vendors));
     function updateCenterCallback(center) {
         props.updateCenterCallback(center)
     }
@@ -50,9 +50,9 @@ function ResultsPage(props:{vendors:Object, center:Object, handleAddVendorClickC
                         <Grid item xs={12}>
                             <Item ><TextField className="searchbox" id="outlined-basic" label="Location" variant="outlined" onKeyDown={handleLocationChange}/></Item>
                         </Grid>
-                        <Grid item xs={12}>
-                            <Card variant="outlined" className="results">
-                                <CardContent>
+                        <Grid item xs={12} className="searchbox">
+                            <Card variant="outlined" >
+                                <CardContent className="results">
                                     <SearchResults vendors={props.vendors}/>
                                 </CardContent>
                             </Card>
