@@ -8,6 +8,8 @@ import L from 'leaflet';
 import { MapContainer, TileLayer, Marker, Tooltip, LayersControl, LayerGroup } from 'react-leaflet';
 import { useMapEvents } from 'react-leaflet';
 
+import * as esri from 'esri-leaflet';
+
 import './map.css';
 
 
@@ -36,12 +38,54 @@ const pinkStarIcon = L.icon({
 });
 
 
-
-
 function Map(props: { vendors: Object, center:Object, updateCenterCallback: CallableFunction, vendorClickCallback: CallableFunction}) {
 
     const [map, setMap] = useState();
     const [center, setCenter] = useState()
+    const [mapControl, setMapControl] = useState(null);
+    const [layer, setLayer] = useState('ArcGIS:Topographic');
+
+    useEffect(() => {
+        if (map != null) {
+          const topographicLayer = esri.basemapLayer('Topographic');
+          const grayLayer = esri.basemapLayer('Gray');
+          const imageryLayer = esri.basemapLayer('Imagery');
+    
+          //  const terrainLabels = esri.basemapLayer('TerrainLabels');
+          //  const imageryLabels = esri.basemapLayer('ImageryLabels');
+    
+          var baseMaps = {
+            "Topographic": topographicLayer,
+            "Gray": grayLayer,
+            'Imagery': imageryLayer
+          };
+    
+          var group = new L.featureGroup();
+    
+          mapControl.addBaseLayer(topographicLayer, "Topographic");
+          mapControl.addBaseLayer(grayLayer, "Light Gray");
+          mapControl.addBaseLayer(imageryLayer, "Imagery");
+    
+          map.addLayer(topographicLayer);  //  default
+        }
+        
+      }, [map])
+      useEffect(() => {
+        if (layer == 'Imagery') {
+          let imageryLabels = esri.basemapLayer('ImageryLabels')
+          imageryLabels.id = 999
+          map.addLayer(imageryLabels);
+        } else {
+          if (mapControl != null) {
+            for (let tempLayer in map._layers) {
+              if (map._layers[tempLayer].id == 999) {
+                map.removeLayer(map._layers[tempLayer])
+              }
+            }
+            
+          }
+        }
+      }, [layer])
 
     useEffect(() => {
         if (center != props.center) {
@@ -91,7 +135,7 @@ function Map(props: { vendors: Object, center:Object, updateCenterCallback: Call
 
     return (
         <MapContainer center={[33.7490, -84.3880]} style={{ width: '100%', height: '100%' }} zoom={13} scrollWheelZoom={false} whenCreated={map => setMap(map)}>
-            <LayersControl position="topright">
+            <LayersControl position="topright" ref={(ref) => { setMapControl(ref); }}>
                 <LayersControl.BaseLayer checked name="OpenStreetMap.Mapnik">
                     <TileLayer
                         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -121,7 +165,7 @@ function Map(props: { vendors: Object, center:Object, updateCenterCallback: Call
                 </LayersControl.Overlay>
                 <LayersControl.Overlay checked name="Hairdresser">
                     <LayerGroup>
-                        {props.vendors != null ? props.vendors.hairdresser.map((vendor) => (<Marker id={vendor.id} icon={pinkStarIcon} giposition={[vendor.latlng.lat, vendor.latlng.lng]} eventHandlers={{mouseup: handleVendorClick}}><Tooltip>{vendor.name}<br></br>{vendor.addr}<br></br><Rating name="read-only" value={getAccessibilityScore(vendor)} readOnly /><div class="ratingDesc">{getAccessibilityDesc(getAccessibilityScore(vendor))}</div></Tooltip></Marker>)) : null}
+                        {props.vendors != null ? props.vendors.hairdresser.map((vendor) => (<Marker id={vendor.id} icon={pinkStarIcon} position={[vendor.latlng.lat, vendor.latlng.lng]} eventHandlers={{mouseup: handleVendorClick}}><Tooltip>{vendor.name}<br></br>{vendor.addr}<br></br><Rating name="read-only" value={getAccessibilityScore(vendor)} readOnly /><div class="ratingDesc">{getAccessibilityDesc(getAccessibilityScore(vendor))}</div></Tooltip></Marker>)) : null}
                     </LayerGroup>
                 </LayersControl.Overlay>
 

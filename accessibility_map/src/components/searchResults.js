@@ -1,5 +1,7 @@
 import { Container, Stack, Card, CardContent, Typography, Box, Grid } from "@mui/material";
 
+import './searchResults.css'
+
 function SearchResults(props) {
     if (props.vendors != null) {
         var vendors = [];
@@ -9,7 +11,7 @@ function SearchResults(props) {
 
         console.log("searchResults.vendors: " + vendors);
         var cards = vendors.map((vendor) => (
-            <Card variant="outlined" sx={{ width: 400, height: 150, padding: 2}}>
+            <Card variant="outlined" >
                 <CardContent>
                     <Typography variant="h4">{vendor.name}</Typography>
                     <Typography variant="body" sx={{ color: "gray"}}>{vendor.addr}</Typography>
@@ -24,13 +26,11 @@ function SearchResults(props) {
         ));
 
         return (
-            <Stack spacing={2} direction="row">
+            <Stack direction="row" className="searchstack">
                 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"></link>
-                <Container padding={50} id="scroll" max-height="30px"> 
-                    <Stack spacing={2} overflow="auto" class="stack">
+                    <Stack spacing={2} >
                         {cards}
                     </Stack>
-                </Container>
             </Stack>
         );
     }
@@ -42,7 +42,7 @@ function listAccessibility(vendor, key, string) {
         return (
         <Stack direction="row" spacing={0.5}>
             <span class="material-icons">done</span>
-            <Typography sx={{ mb: 20, fontSize: 10}}>{string}</Typography>
+            <Typography sx={{ mb: 20, fontSize: 16}}>{string}</Typography>
         </Stack>
         );
     } else {
