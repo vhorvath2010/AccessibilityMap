@@ -17,6 +17,8 @@
 
 .results {
     height: 75vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .addvendorbutton {
