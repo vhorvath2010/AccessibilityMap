@@ -55,7 +55,6 @@ function HomePage(props:{updateCenterCallback:CallableFunction}) {
                 <TextField 
                     hiddenLabel
                     className="searchbox" 
-                    id="outlined-basic" 
                     // label="Location" 
                     variant="standard"
                     inputProps={{

@@ -45,8 +45,15 @@
 }
 
 .titleSlide input {
+  width: 50%;
   color: black;
   font-size: 22px;
-  margin: 25px;
-  margin-left: 495px;
+  margin-top: 20px;
+  /* margin: 25px; */
+  margin-left: 600px;
+}
+
+.titlesearchbox {
+  width: 20wh;
+  padding: 500px;
 }
