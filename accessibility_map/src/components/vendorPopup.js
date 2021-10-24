@@ -12,6 +12,7 @@ import { MenuItem } from '@mui/material';
 import { FormControlLabel, Checkbox } from '@mui/material';
 import { Grid } from '@mui/material';
 import { Typography } from '@mui/material';
+import GalleryPopup from './galleryPopup';
 
 import './vendorPopup.css'
 
@@ -37,7 +38,7 @@ function VendorPopup(props: { id: String, vendor: Object, handleVendorCloseCallb
         {props.vendor != null ? <DialogTitle>{props.vendor.name}</DialogTitle> : null}
         <DialogContent>
           <Grid container spacing={2} >
-            <Grid item xs={hasGallery ? 8 : 12}>
+            <Grid item xs={10}>
               {props.vendor != null ? <div>A {names[props.vendor.type]} at<br />{props.vendor.addr}</div> : null}
             </Grid>
             <div class="accomidations">
@@ -52,7 +53,9 @@ function VendorPopup(props: { id: String, vendor: Object, handleVendorCloseCallb
                 {listAccessibility(props.vendor, "braille", "Braille")}
               </Stack>
             </div>
-            {hasGallery ? <Grid item xs={4}>this is where the grid would go</Grid> : null}
+            <Grid item xs={4}>
+              
+            </Grid>
           </Grid>
         </DialogContent>
         <DialogActions>
