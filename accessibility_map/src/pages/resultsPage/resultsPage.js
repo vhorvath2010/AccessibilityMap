@@ -15,6 +15,8 @@ import { FormGroup, FormControlLabel, Checkbox, Switch } from '@mui/material';
 
 import Map from '../../components/map';
 
+import SearchResults from '../../components/searchResults';
+
 import styles from './resultsPage.css'
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -24,7 +26,7 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-function ResultsPage(props:{vendors:Object, handleAddVendorClickCallback:CallableFunction, updateCenterCallback:CallableFunction, updateLocationCallback:CallableFunction}) {
+function ResultsPage(props:{vendors:Object, center:Object, handleAddVendorClickCallback:CallableFunction, updateCenterCallback:CallableFunction, updateLocationCallback:CallableFunction, vendorClickCallback:CallableFunction}) {
     
     function updateCenterCallback(center) {
         props.updateCenterCallback(center)
@@ -41,7 +43,7 @@ function ResultsPage(props:{vendors:Object, handleAddVendorClickCallback:Callabl
         <Box>
             <Grid container spacing={2} className="resultsgrid">
                 <Grid item xs={8}>
-                    <Item className="mapitem"><Map vendors={props.vendors} updateCenterCallback={updateCenterCallback}/></Item>
+                    <Item className="mapitem"><Map vendors={props.vendors} center={props.center} updateCenterCallback={updateCenterCallback} vendorClickCallback={props.vendorClickCallback}/></Item>
                 </Grid>
                 <Grid item xs={4} className="sidepane">
                     <Grid container spacing={2}>
@@ -51,11 +53,7 @@ function ResultsPage(props:{vendors:Object, handleAddVendorClickCallback:Callabl
                         <Grid item xs={12}>
                             <Card variant="outlined" className="results">
                                 <CardContent>
-                                    <div>
-                                        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                                        Word of the Day
-                                        </Typography>
-                                    </div>
+                                    <SearchResults vendors={props.vendors}/>
                                 </CardContent>
                             </Card>
                         </Grid>
