@@ -109,7 +109,7 @@ function ResultsPage(props:{vendors:Object, center:Object, handleAddVendorClickC
                                 <FormControlLabel
                                 value="Text-to-Speech"
                                 control={<Switch color="primary" />}
-                                label="Text-to-Speech"
+                                label="TTS"
                                 labelPlacement="left"
                                 />
                                 <FormControlLabel
