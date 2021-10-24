@@ -1,13 +1,35 @@
 import ImageGallery from 'react-image-gallery';
-import firebase from '../firebase';
+import listReactFiles from 'list-react-files';
+import React from 'react';
 
-const storage = firebase.storage();
+async function getImages(id) {
+    const imageDir = '../assets/photos/' + id;
+    try {
+        let originalImages = await listReactFiles(imageDir);
+        return originalImages;
+    } catch (e) {
+        console.log(e);
+        throw (e);
+    }
+}
 
-function GalleyPopup(props) {
-    const images = [];
-    var photosFile = storage.ref('photos/' + props.id);
-    console.log();
-    return(
-        <ImageGallery items={images} />
+// Needs a prop id to function
+const GalleryPopup = props => {
+    const [images, setImages] = React.useState("");
+
+    function loadImages(originalImages) {
+        setImages(originalImages);
+    }
+
+    React.useEffect(() => {
+        getImages(props.id).then(originalImages => {
+            loadImages(originalImages);
+        });
+    });
+
+    return (
+        <div>{images}</div>
     );
 }
+
+export default GalleryPopup;

@@ -130,7 +130,7 @@ function AddVendorPopup(props:{open:Boolean, handleAddVendorCloseCallback:Callab
             <MenuItem value={0}>Restaurant</MenuItem>
             <MenuItem value={1}>Park</MenuItem>
             <MenuItem value={2}>Public Transport</MenuItem>
-            <MenuItem value={3}>Hair Dresser</MenuItem>
+            <MenuItem value={3}>Shopping</MenuItem>
           </Select>
           {services.map((service, index) => (<FormControlLabel control={<Checkbox onClick={setService} value={index} checked={checked[index]}/>} 
           key={index} label={service} />))}

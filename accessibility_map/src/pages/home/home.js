@@ -7,21 +7,37 @@ import Button from '@mui/material/Button';
 import { useRouteMatch, Link, Redirect } from 'react-router-dom'
 import { textToCoord } from '../../services/textToCoord';
 
-function HomePage() {
+function HomePage(props:{updateCenterCallback:CallableFunction}) {
     const [stage, setStage] = useState(0);
-    const [center, setCenter] = useState('');
-    // const [loc, setLoc] = useState();
-    let { path, url } = useRouteMatch();
+    const [location, setLocation] = useState('')
+    const [submitted, setSubmitted] = useState(false);
 
-    const updateCenter = (event) => {
-        setCenter(event.target.value);
+    const updateLocation = (event) => {
+        setLocation(event.target.value);
     }
-    const handleSubmit = () => {
-        // <Redirect to="/test" />
-        // ({ lat, lng } = textToCoord(center));
-        // console.log(lat, lng);
-        // <Link to={`${url}/test`}></Link>
+    
+    const handleSubmit = (event) => {
+        event.preventDefault()
+        textToCoord(location).then(latlng => {
+            console.log(latlng);
+            props.updateCenterCallback(latlng);
+        });
+        fetch('http://localhost:3000')
+        .then(response => {
+            setSubmitted(true)
+            return response.json()
+        })
+        .then(data => {
+            
+        })
     }
+    if (submitted) {
+        return <Redirect push to={{
+            pathname: '/test',
+        }}
+        />
+    }   
+    
 
     if (stage === 0) {
         return (
@@ -38,9 +54,9 @@ function HomePage() {
                     id="outlined-basic" 
                     label="Location" 
                     variant="filled"
-                    onChange={updateCenter} 
+                    onChange={updateLocation} 
                     defaultValue="Atlanta"
-                    value={center}
+                    value={location}
                     />
                 <Button onClick={handleSubmit}>Submit</Button>
             </div>

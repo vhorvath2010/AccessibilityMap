@@ -160,7 +160,7 @@ function Map(props: { vendors: Object, center:Object, updateCenterCallback: Call
                 </LayersControl.Overlay>
                 <LayersControl.Overlay checked name="Shopping">
                     <LayerGroup>
-                        {props.vendors != null ? props.vendors.hairdresser.map((vendor) => (<Marker id={vendor.id} icon={pinkStarIcon} position={[vendor.latlng.lat, vendor.latlng.lng]} eventHandlers={{mouseup: handleVendorClick}}><Tooltip>{vendor.name}<br></br>{vendor.addr}<br></br><Rating name="read-only" value={getAccessibilityScore(vendor)} readOnly /><div class="ratingDesc">{getAccessibilityDesc(getAccessibilityScore(vendor))}</div></Tooltip></Marker>)) : null}
+                        {props.vendors != null ? props.vendors.shopping.map((vendor) => (<Marker id={vendor.id} icon={pinkStarIcon} position={[vendor.latlng.lat, vendor.latlng.lng]} eventHandlers={{mouseup: handleVendorClick}}><Tooltip>{vendor.name}<br></br>{vendor.addr}<br></br><Rating name="read-only" value={getAccessibilityScore(vendor)} readOnly /><div class="ratingDesc">{getAccessibilityDesc(getAccessibilityScore(vendor))}</div></Tooltip></Marker>)) : null}
                     </LayerGroup>
                 </LayersControl.Overlay>
 
