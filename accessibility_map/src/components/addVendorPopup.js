@@ -14,54 +14,70 @@ import { handleNewVendor } from '../services/handleNewVendor';
 
 function AddVendorPopup(props:{open:Boolean, handleAddVendorCloseCallback:CallableFunction}) {
   const [name, setName] = useState('');
-    const [street, setStreet] = useState('');
-    const [city, setCity] = useState('');
-    const [state, setState] = useState('');
-    const [zip, setZip] = useState('');
-    const [busType, setBusType] = useState('');
-    const services = ['Allow Service Animal', 
-                    'ASL accommodations',
-                    'Accessible Parking',
-                    'Braille',
-                    'Curbside Service',
-                    'Mobility Access',
-                ];
-    const [checked, setChecked] = useState([false, false, false, false, false, false]);
+  const [street, setStreet] = useState('');
+  const [city, setCity] = useState('');
+  const [state, setState] = useState('');
+  const [zip, setZip] = useState('');
+  const [busType, setBusType] = useState('');
+  const [error1, setError1] = useState(true);
+  const [error2, setError2] = useState(true);
+  const services = ['Allow Service Animal', 
+                  'ASL accommodations',
+                  'Accessible Parking',
+                  'Braille',
+                  'Curbside Service',
+                  'Mobility Access',
+              ];
+  const [checked, setChecked] = useState([false, false, false, false, false, false]);
 
-    const updateName = (event) => {
-      setName(event.target.value);
+  const updateName = (event) => {
+    if (event.target.value !== '') {
+      setError1(false);
+    } else {
+      setError1(true);
     }
-    const updateStreet = (event) => {
-      setStreet(event.target.value);
+    setName(event.target.value);
+  }
+  const updateStreet = (event) => {
+    if (event.target.value !== '') {
+      setError2(false);
+    } else {
+      setError2(true);
     }
-    const updateCity = (event) => {
-      setCity(event.target.value);
-    }
-    const updateState = (event) => {
-      setState(event.target.value);
-    }
-    const updateZip = (event) => {
-      setZip(event.target.value);
-    }
-    const updateDropdown = (event) => {
-      setBusType(event.target.value);
-    }
-    const setService = (event) => {
-      console.log(checked)
-      // setChecked(prevState => prevState.map((item, idx) => idx === index ? !item : item));
-      let newArr = [...checked]; 
-      // console.log(event.target.checked)
-      newArr[event.target.value] = event.target.checked; 
-      setChecked(newArr);
-    }
-    const handleSubmit = () => {
+    setStreet(event.target.value);
+  }
+  const updateCity = (event) => {
+    setCity(event.target.value);
+  }
+  const updateState = (event) => {
+    setState(event.target.value);
+  }
+  const updateZip = (event) => {
+    setZip(event.target.value);
+  }
+  const updateDropdown = (event) => {
+    setBusType(event.target.value);
+  }
+  const setService = (event) => {
+    console.log(checked)
+    // setChecked(prevState => prevState.map((item, idx) => idx === index ? !item : item));
+    let newArr = [...checked]; 
+    // console.log(event.target.checked)
+    newArr[event.target.value] = event.target.checked; 
+    setChecked(newArr);
+  }
+  const handleSubmit = () => {
+    if (error1 || error2) {
+      alert("Invalid input");
+    } else {
       var addr = street + ', ' + city + ', ' + state + ', ' + zip;
       var serviceRes = {};
       services.forEach((key, i) => serviceRes[key] = checked[i]);
       console.log(serviceRes);
       handleNewVendor(name, addr, busType, serviceRes);
       props.handleAddVendorCloseCallback();
-    } 
+    }
+  } 
 
 
   return (
@@ -73,6 +89,8 @@ function AddVendorPopup(props:{open:Boolean, handleAddVendorCloseCallback:Callab
             To add a new ADA-supported vendor, please fill in the information below.
           </DialogContentText>
           <TextField
+            required
+            error={error1}
             margin="dense"
             id="name"
             label="Name"
@@ -83,6 +101,8 @@ function AddVendorPopup(props:{open:Boolean, handleAddVendorCloseCallback:Callab
             value={name}
           />
           <TextField
+            required
+            error={error2}
             margin="dense"
             id="name"
             label="Street"
