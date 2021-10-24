@@ -8,7 +8,7 @@ import { useMapEvents } from 'react-leaflet';
 
 import './map.css';
 
-function Map(props: { vendors: Object, updateCenterCallback: CallableFunction }) {
+function Map(props: { vendors: Object, updateCenterCallback: CallableFunction, vendorClickCallback: CallableFunction}) {
 
     const [map, setMap] = useState();
     const [center, setCenter] = useState()
@@ -44,8 +44,7 @@ function Map(props: { vendors: Object, updateCenterCallback: CallableFunction })
     }
 
     function handleVendorClick(e) {
-        console.log("vendor click");
-        console.log(e)
+        props.vendorClickCallback(e.target.options.id);
     }
 
     return (
