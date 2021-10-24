@@ -11,13 +11,8 @@ export function handleNewVendor(inputs) {
         console.log("res = " + JSON.stringify(res.data.results[0].geometry.location.lat))
         let lat = res.data.results[0].geometry.location.lat;
         let lng = res.data.results[0].geometry.location.lng;
-        console.log("lat 1 =" + lat);
-
-        console.log("lat 2 =" + lat);
-        console.log("addr = " + inputs.addr);
 
         const latlng = new GeoPoint(lat, lng);
-        console.log("Geopoint: " + latlng);
 
         db.doc().set({
             addr: inputs.addr,
