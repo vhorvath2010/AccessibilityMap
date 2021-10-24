@@ -28,6 +28,7 @@
     border-radius: 25px;
     padding-left: 10px;
     padding-right: 10px;
+    margin: 20px;
 }
 
 .buttonGroup div {
@@ -38,7 +39,7 @@
 
 .buttonGroup button {
     margin: 50px;
-    margin-top: 0px;
+    margin-top: 30px;
 }
 
 .titleSlide input {
