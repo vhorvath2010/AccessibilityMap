@@ -2,6 +2,7 @@ import axios from 'axios'
 
 export function textToCoord(address) {
     const api = "https://maps.googleapis.com/maps/api/geocode/json?address=" + encodeURIComponent(address.trim()) + "&key=AIzaSyA2ZpxnUNAG5JdjNi-jv7Ua3r8krKNjbgc";
+    var lat, lng;
 
     var lat, lng;
 
