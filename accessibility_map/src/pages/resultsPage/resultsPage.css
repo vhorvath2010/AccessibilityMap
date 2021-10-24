@@ -1,0 +1,31 @@
+.resultsgrid {
+    padding: 10px;
+    height: 100vh;
+}
+
+.mapitem {
+    height: 93%;
+}
+
+.sidepane {
+    height: 100%;
+}
+
+.searchbox {
+    width: 100%;
+}
+
+.results {
+    height: 75vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.addvendorbutton {
+    width: 100%;
+}
+
+.legendrow {
+    width: 98.5%;
+    margin-top: 5px;
+}

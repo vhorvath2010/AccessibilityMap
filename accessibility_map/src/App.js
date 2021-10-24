@@ -11,50 +11,94 @@ import './App.css';
 
 import firebase from './firebase';
 
-import ResultsPage from './pages/ResultsPage';
-import Vendor from './pages/Vendor/vendor';
+import ResultsPage from './pages/resultsPage/resultsPage';
+import HomePage from './pages/home/home';
+import AddVendorPopup from './components/addVendorPopup';
+import VendorPopup from './components/vendorPopup';
+import GalleyPopup from './components/galleryPopup';
+
+import { getVendors } from './services/getVendors';
+import { getVendorFromID } from './services/getVendorFromID';
+
+import { textToCoord } from './services/textToCoord';
+
+
 
 function App() {
-  const [vendors, setVendors] = useState([]);
+  const [vendors, setVendors] = useState();
+  const [center, setCenter] = useState();
+  const [locationText, setLocationText] = useState();
+  const [currentID, setCurrentID] = useState();
+  const [currentVendor, setCurrentVendor] = useState();
 
   const ref = firebase.firestore().collection('vendors');
-  console.log(ref);
 
-  function getVendors() {
-    ref.onSnapshot((querySnapshot) => {
-      const items = [];
-      querySnapshot.forEach(element => {
-        items.push(element.data());
-      });
-      setVendors(items);
-    })
-  }
+  const [addVendorOpen, setAddVendorOpen] = useState(false);
+
   useEffect(() => {
-    getVendors();
-  }, []);
+    if (center != null) {
+      // Placeholder values
+      const radius = 100000;
+      getVendors(center, radius).then(vendors => {
+        setVendors(vendors);
+      });
+    }
+  }, [center]);
+
+  function updateCenterCallback(center) {
+    console.log("app page received center");
+    setCenter(center);
+  }
+
+  function updateLocationCallback(location) {
+    console.log("app received updated location");
+    setLocationText(location);
+    textToCoord(location).then(latlng => {
+      setCenter(latlng)
+    });
+  }
+  
+  function handleAddVendorClickCallback() {
+    setAddVendorOpen(true);
+  }
+
+  function handleAddVendorCloseCallback() {
+    setAddVendorOpen(false);
+  }
+
+  function vendorClickCallback(id) {
+    console.log("app received vendor id");
+    setCurrentID(id);
+    getVendorFromID(id).then(vendors => {
+      setCurrentVendor(vendors);
+    });
+  }
+
+  function handleVendorCloseCallback() {
+    setCurrentID(null);
+    setCurrentVendor(null);
+  }
 
   return (
     <Router>
       <Switch>
-        <Route path="/resultsPage">
-          <ResultsPage></ResultsPage>
+        <Route path="/test">
+          <ResultsPage vendors={vendors} center={center} handleAddVendorClickCallback={handleAddVendorClickCallback} updateCenterCallback={updateCenterCallback} updateLocationCallback={updateLocationCallback} vendorClickCallback={vendorClickCallback}/>
+          <AddVendorPopup open={addVendorOpen} handleAddVendorCloseCallback={handleAddVendorCloseCallback}/>
+          <VendorPopup id={currentID} vendor={currentVendor} handleVendorCloseCallback={handleVendorCloseCallback}/>
+        </Route>
+        <Route path="/gallery">
+          <GalleyPopup id="w41RobVqDSDSelIqI7FG" />
         </Route>
         <Route path="/users">
           <Users />
         </Route>
-        <Route path="/vendor">
-          <Vendor />
-        </Route>
         <Route path="/">
-          <Home />
+          <HomePage updateCenterCallback={updateCenterCallback}/>
         </Route>
       </Switch>
     </Router>
   );
-}
-
-function Home() {
-  return <h2>Home</h2>;
 }
 
 function About() {
