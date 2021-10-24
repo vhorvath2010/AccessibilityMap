@@ -37,7 +37,7 @@ function VendorPopup(props: { id: String, vendor: Object, handleVendorCloseCallb
       <Dialog open={props.id && props.vendor} onClose={props.handleAddVendorCloseCallback}>
         {props.vendor != null ? <DialogTitle><Typography color="black" sx={{ fontWeight: 'bold', fontSize: 25 }}>{props.vendor.name}</Typography></DialogTitle> : null}
         <DialogContent>
-          <Grid container spacing={2} >
+          {/* <Grid container spacing={2}> */}
             <Grid item xs={hasGallery == true ? 8 : 12}>
               {props.vendor != null ? <div>A <b>{names[props.vendor.type]}</b> at<br /> <i>{props.vendor.addr}</i></div> : null}
             </Grid>
@@ -56,7 +56,7 @@ function VendorPopup(props: { id: String, vendor: Object, handleVendorCloseCallb
                   {listAccessibility(props.vendor, "braille", "Braille")}
                 </Stack>
               </div>
-              <Grid item xs={4}>
+            <Grid item xs={4}>
             </Grid>
           </Grid>
         </DialogContent>

@@ -17,19 +17,21 @@ function HomePage(props:{updateCenterCallback:CallableFunction}) {
     }
     
     const handleSubmit = (event) => {
-        event.preventDefault()
-        textToCoord(location).then(latlng => {
-            console.log(latlng);
-            props.updateCenterCallback(latlng);
-        });
-        fetch('http://localhost:3000')
-        .then(response => {
-            setSubmitted(true)
-            return response.json()
-        })
-        .then(data => {
-            
-        })
+        if (event.keyCode == 13) {
+            event.preventDefault()
+            textToCoord(location).then(latlng => {
+                console.log(latlng);
+                props.updateCenterCallback(latlng);
+            });
+            fetch('http://localhost:3000')
+            .then(response => {
+                setSubmitted(true)
+                return response.json()
+            })
+            .then(data => {
+                
+            })
+        }
     }
     if (submitted) {
         return <Redirect push to={{
@@ -61,8 +63,9 @@ function HomePage(props:{updateCenterCallback:CallableFunction}) {
                         backgroundColor: 'white', width: 'fit-content'}}}
                     onChange={updateLocation} 
                     value={location}
+                    onKeyDown={handleSubmit}
                     />
-                <Button onClick={handleSubmit}>Submit</Button>
+                {/* <Button onClick={handleSubmit}>Submit</Button> */}
             </div>
         );
     } 
