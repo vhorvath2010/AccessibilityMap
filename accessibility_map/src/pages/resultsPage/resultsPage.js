@@ -24,7 +24,7 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-function ResultsPage(props:{vendors:Object, handleAddVendorClickCallback:CallableFunction, updateCenterCallback:CallableFunction, updateLocationCallback:CallableFunction}) {
+function ResultsPage(props:{vendors:Object, handleAddVendorClickCallback:CallableFunction, updateCenterCallback:CallableFunction, updateLocationCallback:CallableFunction, vendorClickCallback:CallableFunction}) {
     
     function updateCenterCallback(center) {
         props.updateCenterCallback(center)
@@ -41,7 +41,7 @@ function ResultsPage(props:{vendors:Object, handleAddVendorClickCallback:Callabl
         <Box>
             <Grid container spacing={2} className="resultsgrid">
                 <Grid item xs={8}>
-                    <Item className="mapitem"><Map vendors={props.vendors} updateCenterCallback={updateCenterCallback}/></Item>
+                    <Item className="mapitem"><Map vendors={props.vendors} updateCenterCallback={updateCenterCallback} vendorClickCallback={props.vendorClickCallback}/></Item>
                 </Grid>
                 <Grid item xs={4} className="sidepane">
                     <Grid container spacing={2}>
