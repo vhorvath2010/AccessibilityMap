@@ -1,7 +1,12 @@
 import { Container, Stack, Card, CardContent, Typography, Box, Grid } from "@mui/material";
 
 function SearchResult(props) {
-    var cards = props.vendors.map((vendor) => (
+    var vendors = {};
+    for (const key of Object.key(props.vendors)) {
+        vendors.concat(props.vendors[key]);
+    }
+    
+    var cards = vendors.map((vendor) => (
         <Card variant="outlined" sx={{ width: 400, height: 150, padding: 2}}>
             <CardContent>
                 <Typography variant="h4">{vendor.name}</Typography>
