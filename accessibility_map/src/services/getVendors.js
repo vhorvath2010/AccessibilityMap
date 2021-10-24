@@ -7,8 +7,8 @@ const db = firebase.firestore().collection('vendors');
     Function to return vendors within [radius] km from center
 */
 export function getVendors(center, radius) {
-    const names = ['restaurant', 'park', 'transportation', 'hairdresser'];
-    var dict = { 'restaurant': [], 'park': [], 'transportation': [], 'hairdresser': [] };
+    const names = ['restaurant', 'park', 'transportation', 'shopping'];
+    var dict = { 'restaurant': [], 'park': [], 'transportation': [], 'shopping': [] };
     if (!center) {
         return dict;
     }

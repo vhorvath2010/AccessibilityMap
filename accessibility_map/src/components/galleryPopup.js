@@ -1,35 +1,35 @@
 import ImageGallery from 'react-image-gallery';
 import listReactFiles from 'list-react-files';
+import React from 'react';
 
 async function getImages(id) {
     const imageDir = '../assets/photos/' + id;
     try {
         let originalImages = await listReactFiles(imageDir);
         return originalImages;
-    } catch(e) {
+    } catch (e) {
         console.log(e);
-        throw(e);
+        throw (e);
     }
 }
 
 // Needs a prop id to function
-function GalleyPopup(props) {
-    return <div>Test</div>;
-    /*if (!props.id) {
-        return;
-    }    
-    (async () => {
-        const originalImages = await getImages(props.id);
-        const images = [];
-        originalImages.forEach(image => {
-            // Add original image
-            console.log(image);
-            images.push(image);
+const GalleryPopup = props => {
+    const [images, setImages] = React.useState("");
+
+    function loadImages(originalImages) {
+        setImages(originalImages);
+    }
+
+    React.useEffect(() => {
+        getImages(props.id).then(originalImages => {
+            loadImages(originalImages);
         });
-        return(
-            <p>Test</p>
-        );
-    })()    */
+    });
+
+    return (
+        <div>{images}</div>
+    );
 }
 
-export default GalleyPopup;
+export default GalleryPopup;
