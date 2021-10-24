@@ -15,6 +15,8 @@ import { FormGroup, FormControlLabel, Checkbox, Switch } from '@mui/material';
 
 import Map from '../../components/map';
 
+import SearchResults from '../../components/searchResults';
+
 import styles from './resultsPage.css'
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -51,11 +53,7 @@ function ResultsPage(props:{vendors:Object, center:Object, handleAddVendorClickC
                         <Grid item xs={12}>
                             <Card variant="outlined" className="results">
                                 <CardContent>
-                                    <div>
-                                        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                                        Word of the Day
-                                        </Typography>
-                                    </div>
+                                    <SearchResults vendors={props.vendors}/>
                                 </CardContent>
                             </Card>
                         </Grid>
