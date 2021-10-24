@@ -14,7 +14,7 @@ import firebase from './firebase';
 import ResultsPage from './pages/resultsPage/resultsPage';
 import HomePage from './pages/home/home';
 import Vendor from './pages/Vendor/vendor'
-import VendorPopup from './components/vendorPopup';
+import AddVendorPopup from './components/addVendorPopup';
 
 import { getVendors } from './services/getVendors';
 
@@ -62,7 +62,7 @@ function App() {
       <Switch>
         <Route path="/test">
           <ResultsPage vendors={vendors} handleAddVendorClickCallback={handleAddVendorClickCallback} updateCenterCallback={updateCenterCallback} updateLocationCallback={updateLocationCallback}/>
-          <VendorPopup open={addVendorOpen} handleAddVendorCloseCallback={handleAddVendorCloseCallback}/>
+          <AddVendorPopup open={addVendorOpen} handleAddVendorCloseCallback={handleAddVendorCloseCallback}/>
         </Route>
         <Route path="/users">
           <Users />

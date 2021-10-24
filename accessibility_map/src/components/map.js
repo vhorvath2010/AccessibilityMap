@@ -43,6 +43,11 @@ function Map(props: { vendors: Object, updateCenterCallback: CallableFunction })
         return Math.min(5, score);
     }
 
+    function handleVendorClick(e) {
+        console.log("vendor click");
+        console.log(e)
+    }
+
     return (
         <MapContainer center={[45.444, -75.6939]} style={{ width: '100%', height: '100%' }} zoom={13} scrollWheelZoom={false} whenCreated={map => setMap(map)}>
             <LayersControl position="topright">
@@ -60,22 +65,22 @@ function Map(props: { vendors: Object, updateCenterCallback: CallableFunction })
                 </LayersControl.BaseLayer>
                 <LayersControl.Overlay checked name="Restaurants">
                     <LayerGroup>
-                        {props.vendors != null ? props.vendors.restaurant.map((vendor) => (<Marker position={[vendor.latlng.lat, vendor.latlng.lng]}><Tooltip>{vendor.name}<br></br>{vendor.addr}<br></br><Rating name="read-only" value={getAccessibilityScore(vendor)} readOnly /><div class="ratingDesc">{getAccessibilityDesc(getAccessibilityScore(vendor))}</div></Tooltip></Marker>)) : null}
+                        {props.vendors != null ? props.vendors.restaurant.map((vendor) => (<Marker id={vendor.id} position={[vendor.latlng.lat, vendor.latlng.lng]} eventHandlers={{mouseup: handleVendorClick}}><Tooltip>{vendor.id}{vendor.name}<br></br>{vendor.addr}<br></br><Rating name="read-only" value={getAccessibilityScore(vendor)} readOnly /><div class="ratingDesc">{getAccessibilityDesc(getAccessibilityScore(vendor))}</div></Tooltip></Marker>)) : null}
                     </LayerGroup>
                 </LayersControl.Overlay>
                 <LayersControl.Overlay checked name="Park">
                     <LayerGroup>
-                        {props.vendors != null ? props.vendors.park.map((vendor) => (<Marker position={[vendor.latlng.lat, vendor.latlng.lng]}><Tooltip>{vendor.name}<br></br>{vendor.addr}<br></br><Rating name="read-only" value={getAccessibilityScore(vendor)} readOnly /><div class="ratingDesc">{getAccessibilityDesc(getAccessibilityScore(vendor))}</div></Tooltip></Marker>)) : null}
+                        {props.vendors != null ? props.vendors.park.map((vendor) => (<Marker id={vendor.id} position={[vendor.latlng.lat, vendor.latlng.lng]} eventHandlers={{mouseup: handleVendorClick}}><Tooltip>{vendor.id}{vendor.name}<br></br>{vendor.addr}<br></br><Rating name="read-only" value={getAccessibilityScore(vendor)} readOnly /><div class="ratingDesc">{getAccessibilityDesc(getAccessibilityScore(vendor))}</div></Tooltip></Marker>)) : null}
                     </LayerGroup>
                 </LayersControl.Overlay>
                 <LayersControl.Overlay checked name="Transportation">
                     <LayerGroup>
-                        {props.vendors != null ? props.vendors.transportation.map((vendor) => (<Marker position={[vendor.latlng.lat, vendor.latlng.lng]}><Tooltip>{vendor.name}<br></br>{vendor.addr}<br></br><Rating name="read-only" value={getAccessibilityScore(vendor)} readOnly /><div class="ratingDesc">{getAccessibilityDesc(getAccessibilityScore(vendor))}</div></Tooltip></Marker>)) : null}
+                        {props.vendors != null ? props.vendors.transportation.map((vendor) => (<Marker id={vendor.id} position={[vendor.latlng.lat, vendor.latlng.lng]} eventHandlers={{mouseup: handleVendorClick}}><Tooltip>{vendor.id}{vendor.name}<br></br>{vendor.addr}<br></br><Rating name="read-only" value={getAccessibilityScore(vendor)} readOnly /><div class="ratingDesc">{getAccessibilityDesc(getAccessibilityScore(vendor))}</div></Tooltip></Marker>)) : null}
                     </LayerGroup>
                 </LayersControl.Overlay>
                 <LayersControl.Overlay checked name="Hairdresser">
                     <LayerGroup>
-                        {props.vendors != null ? props.vendors.hairdresser.map((vendor) => (<Marker position={[vendor.latlng.lat, vendor.latlng.lng]}><Tooltip>{vendor.name}<br></br>{vendor.addr}<br></br><Rating name="read-only" value={getAccessibilityScore(vendor)} readOnly /><div class="ratingDesc">{getAccessibilityDesc(getAccessibilityScore(vendor))}</div></Tooltip></Marker>)) : null}
+                        {props.vendors != null ? props.vendors.hairdresser.map((vendor) => (<Marker id={vendor.id} position={[vendor.latlng.lat, vendor.latlng.lng]} eventHandlers={{mouseup: handleVendorClick}}><Tooltip>{vendor.id}{vendor.name}<br></br>{vendor.addr}<br></br><Rating name="read-only" value={getAccessibilityScore(vendor)} readOnly /><div class="ratingDesc">{getAccessibilityDesc(getAccessibilityScore(vendor))}</div></Tooltip></Marker>)) : null}
                     </LayerGroup>
                 </LayersControl.Overlay>
 
