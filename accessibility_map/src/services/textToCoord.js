@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export function handleNewVendor(address) {
+export function textToCoord(address) {
     const api = "https://maps.googleapis.com/maps/api/geocode/json?address=" + encodeURIComponent(address.trim()) + "&key=AIzaSyA2ZpxnUNAG5JdjNi-jv7Ua3r8krKNjbgc";
 
     axios.get(api).then(res => {

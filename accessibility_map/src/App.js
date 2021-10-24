@@ -13,7 +13,6 @@ import firebase from './firebase';
 
 import ResultsPage from './pages/resultsPage/resultsPage';
 import HomePage from './pages/home/home';
-import Vendor from './pages/Vendor/vendor'
 import VendorPopup from './components/vendorPopup';
 
 import { getVendors } from './services/getVendors';
@@ -67,9 +66,9 @@ function App() {
         <Route path="/users">
           <Users />
         </Route>
-        <Route path="/vendor">
+        {/* <Route path="/vendor">
           <Vendor />
-        </Route>
+        </Route> */}
         <Route path="/">
           <HomePage />
         </Route>
