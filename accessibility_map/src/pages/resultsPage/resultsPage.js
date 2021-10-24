@@ -101,9 +101,9 @@ function ResultsPage(props:{vendors:Object, center:Object, handleAddVendorClickC
                         <Grid item xs={12} align="center">
                             <FormGroup aria-label="position" row >
                                 <FormControlLabel
-                                value="Color friendly"
+                                value="Invert Colors"
                                 control={<Switch color="primary" />}
-                                label="Color friendly"
+                                label="Invert Colors"
                                 labelPlacement="left"
                                 />
                                 <FormControlLabel
@@ -113,15 +113,15 @@ function ResultsPage(props:{vendors:Object, center:Object, handleAddVendorClickC
                                 labelPlacement="left"
                                 />
                                 <FormControlLabel
-                                value="Larger text"
+                                value="Bigger Text"
                                 control={<Switch color="primary" />}
-                                label="Bottom"
+                                label="Bigger Text"
                                 labelPlacement="left"
                                 />
                                 <FormControlLabel
-                                value="end"
+                                value="No Animations"
                                 control={<Switch color="primary" />}
-                                label="End"
+                                label="No Animations"
                                 labelPlacement="left"
                                 />
                             </FormGroup>

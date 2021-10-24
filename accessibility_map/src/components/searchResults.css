@@ -1,4 +1,3 @@
 .searchstack {
-    overflow-y: scroll;
-    overflow-x: hidden;
+    width: 100%;
 }
