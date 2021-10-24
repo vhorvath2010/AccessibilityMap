@@ -10,21 +10,31 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { Select } from '@mui/material';
 import { MenuItem } from '@mui/material';
 import { FormControlLabel, Checkbox } from '@mui/material';
+import { Grid } from '@mui/material';
+import { Typography } from '@mui/material';
+
+import './vendorPopup.css'
 
 function VendorPopup(props:{id:String, handleVendorCloseCallback:CallableFunction}) {
 
+  const [hasGallery, setHasGallery] = useState(false);
+
   return (
-    <div>
+    <div className="popupwindow">
       <Dialog open={props.id != null} onClose={props.handleAddVendorCloseCallback}>
-        <DialogTitle>Add New Vendor</DialogTitle>
+        <DialogTitle>{props.id}</DialogTitle>
         <DialogContent>
-          <DialogContentText>
-            Pulling information for {props.id}
-          </DialogContentText>
+          <Grid container spacing={2} >
+            <Grid item xs={hasGallery ? 8 : 12}>
+              <Typography variant="h5" component="div">
+                TEST
+              </Typography>
+            </Grid>
+            <Grid item xs={hasGallery ? 4 : 0}>this is where the grid would go</Grid>
+          </Grid>
         </DialogContent>
         <DialogActions>
-          <Button onClick={props.handleVendorCloseCallback}>Cancel</Button>
-          <Button onClick={props.handleVendorCloseCallback}>Submit</Button>
+          <Button onClick={props.handleVendorCloseCallback}>Done</Button>
         </DialogActions>
       </Dialog>
     </div>
