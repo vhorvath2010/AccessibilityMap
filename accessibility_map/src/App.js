@@ -17,6 +17,7 @@ import Vendor from './pages/Vendor/vendor'
 import VendorPopup from './components/vendorPopup';
 
 import { getVendors } from './services/getVendors';
+import { getVendorFromID } from './services/getVendorFromID';
 
 
 
