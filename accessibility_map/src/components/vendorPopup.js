@@ -10,17 +10,59 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { Select } from '@mui/material';
 import { MenuItem } from '@mui/material';
 import { FormControlLabel, Checkbox } from '@mui/material';
+import { handleNewVendor } from '../services/handleNewVendor';
 
 function VendorPopup(props:{open:Boolean, handleAddVendorCloseCallback:CallableFunction}) {
-
-  const services = ['Allow Service Animal', 
+  const [name, setName] = useState('');
+    const [street, setStreet] = useState('');
+    const [city, setCity] = useState('');
+    const [state, setState] = useState('');
+    const [zip, setZip] = useState('');
+    const [busType, setBusType] = useState('');
+    const services = ['Allow Service Animal', 
                     'ASL accommodations',
                     'Accessible Parking',
                     'Braille',
                     'Curbside Service',
                     'Mobility Access',
                 ];
-  const [checked, setChecked] = useState([]);
+    const [checked, setChecked] = useState([false, false, false, false, false, false]);
+
+    const updateName = (event) => {
+      setName(event.target.value);
+    }
+    const updateStreet = (event) => {
+      setStreet(event.target.value);
+    }
+    const updateCity = (event) => {
+      setCity(event.target.value);
+    }
+    const updateState = (event) => {
+      setState(event.target.value);
+    }
+    const updateZip = (event) => {
+      setZip(event.target.value);
+    }
+    const updateDropdown = (event) => {
+      setBusType(event.target.value);
+    }
+    const setService = (event) => {
+      console.log(checked)
+      // setChecked(prevState => prevState.map((item, idx) => idx === index ? !item : item));
+      let newArr = [...checked]; 
+      // console.log(event.target.checked)
+      newArr[event.target.value] = event.target.checked; 
+      setChecked(newArr);
+    }
+    const handleSubmit = () => {
+      var addr = street + ', ' + city + ', ' + state + ', ' + zip;
+      var serviceRes = {};
+      services.forEach((key, i) => serviceRes[key] = checked[i]);
+      console.log(serviceRes);
+      handleNewVendor(name, addr, busType, serviceRes);
+      props.handleAddVendorCloseCallback();
+    } 
+
 
   return (
     <div>
@@ -37,6 +79,8 @@ function VendorPopup(props:{open:Boolean, handleAddVendorCloseCallback:CallableF
             type="text"
             fullWidth
             variant="standard"
+            onChange={updateName} 
+            value={name}
           />
           <TextField
             margin="dense"
@@ -45,6 +89,8 @@ function VendorPopup(props:{open:Boolean, handleAddVendorCloseCallback:CallableF
             type="text"
             fullWidth
             variant="standard"
+            onChange={updateStreet} 
+            value={street}
           />
           <TextField
             margin="dense"
@@ -52,6 +98,8 @@ function VendorPopup(props:{open:Boolean, handleAddVendorCloseCallback:CallableF
             label="City"
             type="text"
             variant="standard"
+            onChange={updateCity} 
+            value={city}
           />
           <TextField
             margin="dense"
@@ -59,6 +107,8 @@ function VendorPopup(props:{open:Boolean, handleAddVendorCloseCallback:CallableF
             label="State"
             type="text"
             variant="standard"
+            onChange={updateState} 
+            value={state}
           />
           <TextField
             margin="dense"
@@ -66,19 +116,26 @@ function VendorPopup(props:{open:Boolean, handleAddVendorCloseCallback:CallableF
             label="Zipcode"
             type="text"
             variant="standard"
+            onChange={updateZip} 
+            value={zip}
           />
           <h1></h1>
-          <Select sx={{minWidth: '400px'}}>
+          <Select 
+            value={busType} 
+            onChange={updateDropdown}
+            sx={{minWidth: '400px'}}
+            >
             <MenuItem value={0}>Restaurant</MenuItem>
             <MenuItem value={1}>Park</MenuItem>
             <MenuItem value={2}>Public Transport</MenuItem>
             <MenuItem value={3}>Hair Dresser</MenuItem>
           </Select>
-          {services.map((service, index) => (<FormControlLabel control={<Checkbox/>} label={service} checked={checked[index]}/>))}
+          {services.map((service, index) => (<FormControlLabel control={<Checkbox onClick={setService} value={index} checked={checked[index]}/>} 
+          key={index} label={service} />))}
         </DialogContent>
         <DialogActions>
           <Button onClick={props.handleAddVendorCloseCallback}>Cancel</Button>
-          <Button onClick={props.handleAddVendorCloseCallback}>Submit</Button>
+          <Button onClick={handleSubmit}>Submit</Button>
         </DialogActions>
       </Dialog>
     </div>
