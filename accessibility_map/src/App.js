@@ -19,6 +19,8 @@ import VendorPopup from './components/vendorPopup';
 import { getVendors } from './services/getVendors';
 import { getVendorFromID } from './services/getVendorFromID';
 
+import { textToCoord } from './services/textToCoord';
+
 
 
 function App() {
@@ -26,6 +28,7 @@ function App() {
   const [center, setCenter] = useState();
   const [locationText, setLocationText] = useState();
   const [currentID, setCurrentID] = useState();
+  const [currentVendor, setCurrentVendor] = useState();
 
   const ref = firebase.firestore().collection('vendors');
 
@@ -34,7 +37,7 @@ function App() {
   useEffect(() => {
     if (center != null) {
       // Placeholder values
-      const radius = 100000000;
+      const radius = 100000;
       getVendors(center, radius).then(vendors => {
         setVendors(vendors);
       });
@@ -49,6 +52,9 @@ function App() {
   function updateLocationCallback(location) {
     console.log("app received updated location");
     setLocationText(location);
+    textToCoord(location).then(latlng => {
+      setCenter(latlng)
+    });
   }
   
   function handleAddVendorClickCallback() {
@@ -62,19 +68,23 @@ function App() {
   function vendorClickCallback(id) {
     console.log("app received vendor id");
     setCurrentID(id);
+    getVendorFromID(id).then(vendors => {
+      setCurrentVendor(vendors);
+    });
   }
 
   function handleVendorCloseCallback() {
     setCurrentID(null);
+    setCurrentVendor(null);
   }
 
   return (
     <Router>
       <Switch>
         <Route path="/test">
-          <ResultsPage vendors={vendors} handleAddVendorClickCallback={handleAddVendorClickCallback} updateCenterCallback={updateCenterCallback} updateLocationCallback={updateLocationCallback} vendorClickCallback={vendorClickCallback}/>
+          <ResultsPage vendors={vendors} center={center} handleAddVendorClickCallback={handleAddVendorClickCallback} updateCenterCallback={updateCenterCallback} updateLocationCallback={updateLocationCallback} vendorClickCallback={vendorClickCallback}/>
           <AddVendorPopup open={addVendorOpen} handleAddVendorCloseCallback={handleAddVendorCloseCallback}/>
-          <VendorPopup id={currentID} handleVendorCloseCallback={handleVendorCloseCallback}/>
+          <VendorPopup id={currentID} vendor={currentVendor} handleVendorCloseCallback={handleVendorCloseCallback}/>
         </Route>
         <Route path="/users">
           <Users />
