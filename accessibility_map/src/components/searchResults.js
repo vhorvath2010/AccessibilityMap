@@ -15,10 +15,12 @@ function SearchResults(props) {
                 <CardContent>
                     <Typography variant="h5">{vendor.name}</Typography>
                     <Typography variant="body" sx={{ color: "DimGray"}}>{vendor.addr}</Typography>
-                    <Stack direction = "row" spacing={5} sx={{ pt: 3}}>
+                    <Stack direction = "row" spacing={4} sx={{ pt: 3}}>
                         {listAccessibility(vendor, "mob", "Mobility")}
                         {listAccessibility(vendor, "park", "Parking")}
                         {listAccessibility(vendor, "animal", "Animal")}
+                        {listAccessibility(vendor, "asl", "ASL")}
+                        {listAccessibility(vendor, "braille", "Braille")}
                     </Stack>
 
                 </CardContent>
@@ -26,9 +28,9 @@ function SearchResults(props) {
         ));
 
         return (
-            <Stack direction="row" className="searchstack">
+            <Stack direction="row">
                 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"></link>
-                    <Stack spacing={2} >
+                    <Stack className="searchstack" spacing={2} >
                         {cards}
                     </Stack>
             </Stack>
