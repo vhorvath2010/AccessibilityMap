@@ -17,6 +17,7 @@ import AddVendorPopup from './components/addVendorPopup';
 import VendorPopup from './components/vendorPopup';
 
 import { getVendors } from './services/getVendors';
+import { getVendorFromID } from './services/getVendorFromID';
 
 
 
