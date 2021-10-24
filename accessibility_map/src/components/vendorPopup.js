@@ -7,7 +7,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { Select } from '@mui/material';
+import { Select, Stack } from '@mui/material';
 import { MenuItem } from '@mui/material';
 import { FormControlLabel, Checkbox } from '@mui/material';
 import { Grid } from '@mui/material';
@@ -15,7 +15,9 @@ import { Typography } from '@mui/material';
 
 import './vendorPopup.css'
 
-function VendorPopup(props:{id:String, vendor:Object, handleVendorCloseCallback:CallableFunction}) {
+const names = ['restaurant', 'park', 'transportation center', 'shopping center'];
+
+function VendorPopup(props: { id: String, vendor: Object, handleVendorCloseCallback: CallableFunction }) {
 
   const [hasGallery, setHasGallery] = useState(false);
 
@@ -31,13 +33,25 @@ function VendorPopup(props:{id:String, vendor:Object, handleVendorCloseCallback:
 
   return (
     <div className="popupwindow">
-      <Dialog open={props.id != null} onClose={props.handleAddVendorCloseCallback}>
+      <Dialog open={props.id && props.vendor} onClose={props.handleAddVendorCloseCallback}>
         {props.vendor != null ? <DialogTitle>{props.vendor.name}</DialogTitle> : null}
         <DialogContent>
           <Grid container spacing={2} >
             <Grid item xs={hasGallery ? 8 : 12}>
-              {props.vendor != null ? <div>{props.vendor.addr}<br></br>{props.vendor.type}</div> : null}
+              {props.vendor != null ? <div>A {names[props.vendor.type]} at<br />{props.vendor.addr}</div> : null}
             </Grid>
+            <div class="accomidations">
+              <Stack direction="row" spacing={5} sx={{ pt: 3 }}>
+                {listAccessibility(props.vendor, "mob", "Mobility")}
+                {listAccessibility(props.vendor, "park", "Parking")}
+                {listAccessibility(props.vendor, "animal", "Animal")}
+              </Stack>
+              <Stack direction="row" spacing={5} sx={{ pt: 3 }}>
+                {listAccessibility(props.vendor, "asl", "ASL Training")}
+                {listAccessibility(props.vendor, "curb", "Curbside Pickup")}
+                {listAccessibility(props.vendor, "braille", "Braille")}
+              </Stack>
+            </div>
             {hasGallery ? <Grid item xs={4}>this is where the grid would go</Grid> : null}
           </Grid>
         </DialogContent>
@@ -47,6 +61,27 @@ function VendorPopup(props:{id:String, vendor:Object, handleVendorCloseCallback:
       </Dialog>
     </div>
   );
+}
+
+function listAccessibility(vendor, key, string) {
+  if (!vendor) {
+    return "";
+  }
+  if (vendor[key] === true) {
+    return (
+      <Stack direction="row" spacing={0.5}>
+        <span class="material-icons">done</span>
+        <Typography sx={{ mb: 20, fontSize: 16 }}>{string}</Typography>
+      </Stack>
+    );
+  } else {
+    return (
+      <Stack direction="row" spacing={0.5}>
+        <span class="material-icons" sx={{ color: "grey" }}>close</span>
+        <Typography sx={{ mb: 20, fontSize: 16 }}>{string}</Typography>
+      </Stack>
+    );
+  }
 }
 
 export default VendorPopup;
